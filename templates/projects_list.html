@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 목록</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<!-- 검색 입력창과 버튼 -->
+    <form method="GET" action="/search_project">
+        <input type="text" name="query" placeholder="프로젝트 검색">
+        <input type="submit" value="검색">
+    </form>
+
+    <h2>프로젝트 목록</h2>
+    <ul>
+    {% for project in projects %}
+        <li>
+            <h3>{{ project[1] }}</h3>
+            <p>설명: {{ project[2] }}</p>
+            <p>모집 여부: {{ project[4] }}</p>
+            <p>모집 인원: {{ project[5] }}</p>
+            <p>생성일: {{ project[7] }}</p>
+            {% if project[6] %}
+                <img src="{{ url_for('static', filename=project[6]) }}" alt="프로젝트 이미지" width="200">
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+
+    <script>
+    $(document).ready(function() {
+        $("#search-button").on("click", function() {
+            var query = $("#search-input").val();
+            $.getJSON("/search_project", { "query": query }, function(data) {
+                var projects = data.projects;
+                var projectList = $("#project-list");   // 위에서 수정한 ul 태그의 id를 참조합니다.
+
+                projectList.empty();  // 기존 리스트를 비웁니다.
+
+                projects.forEach(function(project) {
+                    var imagePath = project[6] ? '/static/' + project[6] : ''; // Flask의 static URL로 이미지 경로를 생성합니다.
+                    var listItem = `
+                    <li>
+                        <h3>${project[1]}</h3>
+                        <p>설명: ${project[2]}</p>
+                        <p>모집 여부: ${project[4]}</p>
+                        <p>모집 인원: ${project[5]}</p>
+                        <p>생성일: ${project[7]}</p>
+                        ${project[6] ? '<img src="' + imagePath + '" alt="프로젝트 이미지" width="200">' : ''}
+                    </li>`;
+                    projectList.append(listItem);
+                });
+            }).fail(function() {
+                console.error("Error occurred during fetching the data.");
+            });
+        });
+    });
+    </script>
+    {{projectList}}
+</body>
+</html>
