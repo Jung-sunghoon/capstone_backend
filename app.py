@@ -2,22 +2,46 @@ from flask import Flask, jsonify, render_template, request, flash, url_for, redi
 import os
 import sqlite3
 from datetime import datetime
+from markdown import markdown
+from flasgger import Swagger
+import requests
+from flask_restx import Api, Resource
 
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+swagger = Swagger(app)
+#####################스웨거 주소 ######################
+# http://127.0.0.1:5002/apidocs/
+# 5002는 포트번호이므로 변경해도 상관없음(default)
+
 UPLOAD_FOLDER = 'static/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+app.config['SWAGGER'] = {
+    'title': 'My API',
+    'uiversion': 3
+}
+
 DATABASE = 'users.db'
 
+@app.route('/api/some_endpoint', methods=['GET'])
+def some_endpoint():
+    """
+    API 엔드포인트 설명
+    ---
+    responses:
+      200:
+        description: 성공 응답 설명
+    """
+    return jsonify({"message": "success"})
 
 @app.route('/')
 def index():
 
-    return render_template('projectForm.html')  # << html 파일이름
+    return render_template('projects_list.html')  # << html 파일이름
 
     #projects_list 부분 확인하려면 아래에 있는 주석 해제 및 위에 return 주석
 
@@ -31,9 +55,18 @@ def index():
     #return render_template('projects_list.html', projects=projects)
     #########################################################################################
 
+
+
 # test api
 @app.route('/api/greet', methods=['GET'])
 def greet():
+    """
+        테스트 API 엔드포인트
+        ---
+        responses:
+          200:
+            description: 테스트 메시지 반환
+        """
     return jsonify({"message": "test 한글?"})
 
 
@@ -46,6 +79,13 @@ def get_db():
 # 일반 사용자 회원가입 api
 @app.route('/sign_up_user', methods=['POST'])
 def sign_up_user():
+    """
+            일반 사용자 회원가입 api
+            ---
+            responses:
+              400:
+                description: 사용자 정보를 입력받아 아이디 중복체크 확인 후 DB에 저장
+            """
     data = request.get_json()
 
     id = data['id']
@@ -254,7 +294,9 @@ def projects_list():
     projects = cursor.fetchall()
     conn.close()
 
-    return render_template('projects_list.html', projects=projects)
+    projects_list = [dict((cursor.description[i][0], value)
+                          for i, value in enumerate(row)) for row in projects]
+    return jsonify(projects_list)
 
 
 #프로젝트 검색기능
@@ -268,7 +310,22 @@ def search_project():
     #print(projects)
     return render_template('projects_list.html', projects=projects)
 
+# md파일 불러오기
+
+@app.route('/markdown_page')
+def render_markdown():
+    #추후에 db 전체를 가졔와서 for 문 돌림    ( FROM git_hub_address )
+    url = "https://raw.githubusercontent.com/pytorch/vision/main/README.md"
+
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        content = response.text
+        html_content = markdown(content)
+        return html_content
+    else:
+        return "Error fetching markdown from GitHub", 500
+
 
 if __name__ == '__main__':
-
-    app.run(debug=True)
+    app.run(debug=True, port=5002)
