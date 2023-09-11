@@ -31,7 +31,8 @@ spring boot 실행 및 swagger 등록 성공
 
 현재 DB 생성문
 ====
-'''
+
+```
 DROP DATABASE IF EXISTS capstone;
 CREATE DATABASE capstone;
 
@@ -45,4 +46,4 @@ CREATE TABLE users (
     email VARCHAR(100),
     gitAddress VARCHAR(100)
 );
-'''
+```
