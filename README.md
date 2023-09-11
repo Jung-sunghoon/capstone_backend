@@ -25,7 +25,7 @@ DB는 MySQL 8.0.33 버전 이용 및 MySQL workbench를 이용
 ```
 위의 코드 추가 후
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/80dbf90a-24ab-4280-85f3-5b38857f05a8/d151552e-3756-4664-a377-12f023a36330/Untitled.png)
+![image](https://github.com/Jung-sunghoon/capstone_be/assets/101784544/2d047862-2c57-4f50-a017-4cbf64fbb62f)
 
 위의 그림처럼 오른쪽 완전 끝부분 m Maven 클릭후 회전 재활용 모양(모든 maven 프로젝트 다시 로드) 버튼 누르면 적용됨(빨간색 글씨 사라짐)
 
