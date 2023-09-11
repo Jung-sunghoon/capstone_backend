@@ -13,3 +13,6 @@ back/demo/src/main/resources/application.properties
 spring.datasource.jdbc-url=jdbc:mysql://localhost:3307/capstone 
 
 접속안될 시 3307 -> 3306 으로 변경
+
+진행사항
+==================
