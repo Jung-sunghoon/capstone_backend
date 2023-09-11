@@ -31,7 +31,7 @@ spring boot 실행 및 swagger 등록 성공
 
 현재 DB 생성문
 ====
-'''sql
+'''
 DROP DATABASE IF EXISTS capstone;
 CREATE DATABASE capstone;
 
