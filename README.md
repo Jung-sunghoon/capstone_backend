@@ -16,3 +16,6 @@ spring.datasource.jdbc-url=jdbc:mysql://localhost:3307/capstone
 
 진행사항
 ==================
+spring boot 실행 및 swagger 등록 성공
+
+230912 로그인 및 회원가입 기능 구현
