@@ -25,3 +25,24 @@ spring boot 실행 및 swagger 등록 성공
 ***
 
 ??
+
+
+
+
+현재 DB 생성문
+====
+'''sql
+DROP DATABASE IF EXISTS capstone;
+CREATE DATABASE capstone;
+
+USE capstone;
+
+CREATE TABLE users (
+    userId VARCHAR(100) PRIMARY KEY,
+    password VARCHAR(100),
+    name VARCHAR(50),
+    nickname VARCHAR(50),
+    email VARCHAR(100),
+    gitAddress VARCHAR(100)
+);
+'''
