@@ -10,3 +10,6 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 }
+
+//스웨거 주소!!!!!!!!
+//http://localhost:8080/swagger-ui/index.html
