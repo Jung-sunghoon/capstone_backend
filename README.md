@@ -6,13 +6,13 @@ http://localhost:8080/swagger-ui/index.html
 
 설정
 ========
-intellig IDEA 사용
+**intellig IDEA** 사용
 ***
-gradle 말고 maven 이용
+gradle 말고 **maven** 이용
 ***
-DB는 MySQL 8.0.33 버전 이용 및 MySQL workbench를 이용
+DB는 **MySQL 8.0.33** 버전 이용 및 **MySQL workbench**를 이용
 
-추가로 SQL을 유연하게 이용하기 위해 Mybatis(마이바티스) 사용
+추가로 SQL을 유연하게 이용하기 위해 **Mybatis(마이바티스)** 사용
 ***
 종속성 추가하는 방법(maven)
 -----------
