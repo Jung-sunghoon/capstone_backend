@@ -12,4 +12,6 @@ public class DemoApplication {
 }
 
 //스웨거 주소!!!!!!!!
-//http://localhost:8080/swagger-ui/index.html
+//http://localhost:8080/swagger-ui/index.html\
+
+//https://bestinu.tistory.com/51 서버관련 주소
