@@ -49,8 +49,11 @@ spring.sql.init.continue-on-error=true
 spring.sql.init.schema-locations=classpath:schema-postgresql.sql
 ```
 추가시 항상 schema-postgresql.sql문을 서버 시작시 실행함
->> DB를 따로 sql workbench에서 create 해줄 필요가 없어짐 (추가된 데이터 확인은 추가 필요)
+
+-> DB를 따로 sql workbench에서 create 해줄 필요가 없어짐 (추가된 데이터 확인은 추가 필요)
+
 main/resurces/schema-postgresql.sql 여기에다가 새로만들 db 테이블 추가
+
 main/resurces/data-postgresql.sql 여기는 테스트용 데이터셋을 넣는 부분(insert into ... Values....), 현재는 주석 처리  
 
 
