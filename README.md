@@ -38,6 +38,24 @@ spring.datasource.jdbc-url=jdbc:mysql://localhost:3307/capstone
 
 접속안될 시 3307 -> 3306 으로 변경
 
+***
+db관련 추가 사항 230914
+-----------------------
+application.properties에 아래 코드 추가
+```
+spring.sql.init.mode=always
+spring.sql.init.continue-on-error=true
+#spring.sql.init.data-locations=classpath:data-postgresql.sql
+spring.sql.init.schema-locations=classpath:schema-postgresql.sql
+```
+추가시 항상 schema-postgresql.sql문을 서버 시작시 실행함
+
+-> DB를 따로 sql workbench에서 create 해줄 필요가 없어짐 (추가된 데이터 확인은 추가 필요)
+
+main/resurces/schema-postgresql.sql 여기에다가 새로만들 db 테이블 추가
+
+main/resurces/data-postgresql.sql 여기는 테스트용 데이터셋을 넣는 부분(insert into ... Values....), 현재는 주석 처리  
+
 
 
 
@@ -51,7 +69,7 @@ spring boot 실행 및 swagger 등록 성공
 ![image](https://github.com/Jung-sunghoon/capstone_be/assets/101784544/8bd0f45c-ae7a-4fc1-9f4a-22bdc79e2ce6)
 ***
 
-??
+230914 구인글 올리기 기능 구현, db 자동 생성 기능, 아이디 중복체크 기능 수정 및 get방식으로 수정
 
 
 
@@ -72,5 +90,16 @@ CREATE TABLE users (
     nickname VARCHAR(50),
     email VARCHAR(100),
     gitAddress VARCHAR(100)
+);
+
+CREATE TABLE projectGenerate (
+    projectId int PRIMARY KEY,
+    projectTitle VARCHAR(100),
+    description VARCHAR(500),
+    creatorId VARCHAR(50),
+    recruitmentStatus VARCHAR(50),
+    recruitmentCount int,
+    generateDate varchar(50),
+    acceptedID VARCHAR(200)
 );
 ```
