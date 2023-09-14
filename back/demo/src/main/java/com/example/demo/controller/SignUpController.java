@@ -20,10 +20,6 @@ public class SignUpController {
 
     @PostMapping("/sign_up")
     public ResponseEntity<String> registerUser(@RequestBody SignUpDTO users) {
-        System.out.println("Received request body: " + users.toString());
-        if (signUpDAO.checkUserId(users.getUserId()) > 0) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("이미 사용 중인 아이디입니다.");
-        }
         signUpDAO.SignUpData(users);
         return ResponseEntity.ok("회원 가입 성공");
     }
