@@ -9,7 +9,8 @@ CREATE TABLE users (
     name VARCHAR(50),
     nickname VARCHAR(50),
     email VARCHAR(100),
-    gitAddress VARCHAR(100)
+    gitAddress VARCHAR(100),
+    point int
 );
 
 

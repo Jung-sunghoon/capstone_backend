@@ -4,5 +4,4 @@
     <select id="getAllProjects" resultType="com.example.demo.dto.ProjectListDTO">
         SELECT * FROM projectGenerate
     </select>
-
 </mapper>

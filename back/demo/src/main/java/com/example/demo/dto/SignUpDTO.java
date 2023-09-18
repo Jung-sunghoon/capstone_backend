@@ -7,6 +7,7 @@ public class SignUpDTO {
     private String nickname;
     private String email;
     private String gitAddress;
+    private int point;
 
     public String getUserId() {
         return userId;
@@ -55,6 +56,15 @@ public class SignUpDTO {
     public void setGitAddress(String gitAddress) {
         this.gitAddress = gitAddress;
     }
+
+    public int getPoint() {
+        return point;
+    }
+
+    public void setPoint(int point) {
+        this.point = point;
+    }
+
 
     @Override
     public String toString() {
