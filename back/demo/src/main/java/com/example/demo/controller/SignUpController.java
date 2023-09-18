@@ -20,8 +20,6 @@ public class SignUpController {
 
     @PostMapping("/sign_up")
     public ResponseEntity<String> registerUser(@RequestBody SignUpDTO users) {
-        //점수를 0점으로 초기화
-        users.setPoint(0);
         signUpDAO.SignUpData(users);
         return ResponseEntity.ok("회원 가입 성공");
     }
