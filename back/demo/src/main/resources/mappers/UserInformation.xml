@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.UserInformationDAO">
+    <select id="UserData"  resultType="com.example.demo.dto.SignUpDTO">
+        SELECT * FROM users WHERE userId = #{userId}
+    </select>
+
+    <update id="UpdateUserData" parameterType="com.example.demo.dto.SignUpDTO">
+        UPDATE users SET name = #{name}, email = #{email}, gitAddress = #{gitAddress} WHERE userId = #{userId}
+    </update>
+</mapper>
