@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.ProjectSearchDAO">
+    <select id="SearchProject" parameterType="string" resultType="com.example.demo.dto.ProjectGenerateDTO">
+        SELECT * FROM projectGenerate WHERE projectTitle LIKE CONCAT('%', #{projectTitle}, '%')
+    </select>
+</mapper>
