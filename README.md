@@ -90,7 +90,7 @@ CREATE TABLE users (
     nickname VARCHAR(50),
     email VARCHAR(100),
     gitAddress VARCHAR(100),
-    point int
+    point int DEFAULT 0
 );
 
 CREATE TABLE projectGenerate (
