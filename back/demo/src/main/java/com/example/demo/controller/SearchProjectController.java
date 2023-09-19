@@ -13,6 +13,7 @@ import java.util.Locale;
 
 import static java.sql.Types.NULL;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
 public class SearchProjectController {
