@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ProjectMoreInformationDAO {
     ProjectGenerateDTO ProjectInformation(int projectId);
+
+    void IncreaseViewCount(int projectId);
 }

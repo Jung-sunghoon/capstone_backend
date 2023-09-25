@@ -22,6 +22,7 @@ public class ProjectMoreInformationController {
     public ResponseEntity<?> projectInformation(@RequestParam int projectId) {
 
         ProjectGenerateDTO results = projectMoreInformationDAO.ProjectInformation(projectId);
+        projectMoreInformationDAO.IncreaseViewCount(projectId);
         
         if (results == null) {
             return new ResponseEntity<>("해당 프로젝트가 없습니다", HttpStatus.NOT_FOUND);

@@ -22,16 +22,17 @@ CREATE TABLE projectGenerate (
     recruitmentStatus VARCHAR(50),
     recruitmentCount int,
     generateDate varchar(50),
-    acceptedID VARCHAR(200)
+    acceptedID VARCHAR(200),
+    likes int DEFAULT 0,
+    views int DEFAULT 0
 );
+
 
 CREATE TABLE Comments (
     commentId INT AUTO_INCREMENT PRIMARY KEY,
     projectId INT,
     userId VARCHAR(100),
     content TEXT,
-    likeCount INT DEFAULT 0,
-    dislikeCount INT DEFAULT 0,
     created_at varchar(50),
     updated_at varchar(50)
 );
