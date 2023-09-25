@@ -16,7 +16,7 @@ public class ProjectListController {
     @Autowired
     private ProjectListDAO projectListDAO;
 
-    @GetMapping("/projects")
+    @GetMapping("/projects_list")
     public ResponseEntity<List<ProjectListDTO>> getAllProjects() {
         List<ProjectListDTO> projects = projectListDAO.getAllProjects();
 

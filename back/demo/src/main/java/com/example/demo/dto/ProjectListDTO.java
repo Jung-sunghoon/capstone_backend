@@ -9,6 +9,8 @@ public class ProjectListDTO {
     private int recruitmentCount;
     private String generateDate;
     private String acceptedID;
+    private int likes;
+    private int views;
 
     // getters and setters
 
@@ -74,6 +76,21 @@ public class ProjectListDTO {
 
     public void setAcceptedID(String acceptedID) {
         this.acceptedID = acceptedID;
+    }
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
+    }
+
+    public int getViews() {
+        return views;
     }
 
     @Override
