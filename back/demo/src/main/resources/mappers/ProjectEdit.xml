@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.ProjectEditDAO">
+    <update id="EditProject" parameterType="com.example.demo.dto.ProjectGenerateDTO">
+        UPDATE projectGenerate SET projectTitle = #{projectTitle}, description = #{description}, recruitmentStatus = #{recruitmentStatus}, recruitmentCount = #{recruitmentCount} WHERE projectId = #{projectId}
+    </update>
+</mapper>
