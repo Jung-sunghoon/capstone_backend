@@ -2,12 +2,12 @@ package com.example.demo.controller;
 
 import com.example.demo.dao.CommentDAO;
 import com.example.demo.dto.CommentDTO;
-import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Locale;
 
 @CrossOrigin(origins = "*")
@@ -33,4 +33,17 @@ public class CommentController {
         commentDAO.saveComment(comment);
         return ResponseEntity.ok("댓글 저장 완료");
     }
+
+    @GetMapping("/comments/{projectId}")
+    public ResponseEntity<List<CommentDTO>> getCommentsByProjectId(@PathVariable int projectId) {
+        List<CommentDTO> comments = commentDAO.getCommentsByProjectId(projectId);
+
+        if (comments.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(comments);
+    }
+
 }
+

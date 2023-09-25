@@ -5,4 +5,7 @@
         INSERT INTO Comments (projectId, userId, content, likeCount, dislikeCount, created_at, updated_at)
         VALUES (#{projectId}, #{userId}, #{content}, #{likeCount}, #{dislikeCount}, #{createdAt}, #{updatedAt})
     </insert>
+    <select id="getCommentsByProjectId" parameterType="int" resultType="com.example.demo.dto.CommentDTO">
+        SELECT * FROM Comments WHERE projectId = #{projectId}
+    </select>
 </mapper>
