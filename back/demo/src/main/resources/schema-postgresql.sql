@@ -33,6 +33,6 @@ CREATE TABLE Comments (
     projectId INT,
     userId VARCHAR(100),
     content TEXT,
-    created_at varchar(50),
-    updated_at varchar(50)
+    createdAt varchar(50),
+    updatedAt varchar(50)
 );

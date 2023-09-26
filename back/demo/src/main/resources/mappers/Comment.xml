@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.CommentDAO">
     <insert id="saveComment" parameterType="com.example.demo.dto.CommentDTO">
-        INSERT INTO Comments (projectId, userId, content, likeCount, dislikeCount, created_at, updated_at)
-        VALUES (#{projectId}, #{userId}, #{content}, #{likeCount}, #{dislikeCount}, #{createdAt}, #{updatedAt})
+        INSERT INTO Comments (projectId, userId, content,  createdAt, updatedAt)
+        VALUES (#{projectId}, #{userId}, #{content},  #{createdAt}, #{updatedAt})
     </insert>
     <select id="getCommentsByProjectId" parameterType="int" resultType="com.example.demo.dto.CommentDTO">
         SELECT * FROM Comments WHERE projectId = #{projectId}
