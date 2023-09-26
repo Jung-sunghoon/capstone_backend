@@ -5,7 +5,7 @@ public class ProjectGenerateDTO {
     private int projectId;
     private String projectTitle;
     private String description;
-    private String creatorId;
+    private String userId;
     private String recruitmentStatus;
     private int recruitmentCount;
     private String generateDate;
@@ -31,11 +31,13 @@ public class ProjectGenerateDTO {
     public void setDescription(String description) {
         this.description = description;
     }
-    public String getCreatorId() {
-        return creatorId;
+
+    public String getUserId() {
+        return userId;
     }
-    public void setCreatorId(String creatorId) {
-        this.creatorId = creatorId;
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getRecruitmentStatus() {

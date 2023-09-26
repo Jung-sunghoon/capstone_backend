@@ -4,7 +4,7 @@ public class ProjectListDTO {
     private int projectId;
     private String projectTitle;
     private String description;
-    private String creatorId;
+    private String userId;
     private String recruitmentStatus;
     private int recruitmentCount;
     private String generateDate;
@@ -38,12 +38,12 @@ public class ProjectListDTO {
         this.description = description;
     }
 
-    public String getCreatorId() {
-        return creatorId;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setCreatorId(String creatorId) {
-        this.creatorId = creatorId;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getRecruitmentStatus() {
@@ -99,7 +99,7 @@ public class ProjectListDTO {
                 "projectId=" + projectId +
                 ", projectTitle='" + projectTitle + '\'' +
                 ", description='" + description + '\'' +
-                ", creatorId='" + creatorId + '\'' +
+                ", userId='" + userId + '\'' +
                 ", recruitmentStatus='" + recruitmentStatus + '\'' +
                 ", recruitmentCount=" + recruitmentCount +
                 ", generateDate='" + generateDate + '\'' +

@@ -18,7 +18,7 @@ CREATE TABLE projectGenerate (
     projectId int PRIMARY KEY,
     projectTitle VARCHAR(100),
     description TEXT,
-    creatorId VARCHAR(50),
+    userId VARCHAR(50),
     recruitmentStatus VARCHAR(50),
     recruitmentCount int,
     generateDate varchar(50),

@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.ProjectGenerateDAO">
     <insert id="ProjectData" parameterType="com.example.demo.dto.ProjectGenerateDTO" >
-        INSERT INTO projectGenerate (projectId, projectTitle, description, creatorId, recruitmentStatus, recruitmentCount, generateDate, acceptedID)
-        VALUES (#{projectId}, #{projectTitle}, #{description}, #{creatorId}, #{recruitmentStatus}, #{recruitmentCount}, #{generateDate}, #{acceptedID})
+        INSERT INTO projectGenerate (projectId, projectTitle, description, userId, recruitmentStatus, recruitmentCount, generateDate, acceptedID)
+        VALUES (#{projectId}, #{projectTitle}, #{description}, #{userId}, #{recruitmentStatus}, #{recruitmentCount}, #{generateDate}, #{acceptedID})
     </insert>
     <select id="ProjectNumCheck" parameterType="com.example.demo.dto.ProjectGenerateDTO">
         SELECT MAX(projectId) FROM projectGenerate
