@@ -120,7 +120,7 @@ CREATE TABLE projectGenerate (
     recruitmentCount int,                /* 구인 인원 수*/
     generateDate varchar(50),            /* 프로젝트 생성 날짜*/
     likes int DEFAULT 0,                 /* 좋아요 수 (생성시 0개)*/
-    views int DEFAULT 0                  /* 조회수 (생성시 0회)*/
+    views int DEFAULT 0                  /* 조회수 (생성시 0회)*/ 
 );
 
 
