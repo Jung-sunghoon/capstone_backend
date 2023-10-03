@@ -100,37 +100,37 @@ CREATE DATABASE capstone;
 USE capstone;
 
 CREATE TABLE users (
-    userId VARCHAR(100) PRIMARY KEY,
-    password VARCHAR(100),
-    name VARCHAR(50),
-    nickname VARCHAR(50),
-    email VARCHAR(100),
-    gitAddress VARCHAR(100),
-    point int DEFAULT 0
+    userId VARCHAR(100) PRIMARY KEY,       /* 유저 아이디 */
+    password VARCHAR(100),                 /* 유저 비밀번호 */
+    name VARCHAR(50),                      /* 유저 이름 */
+    nickname VARCHAR(50),                  /* 유저 닉네임 */
+    email VARCHAR(100),                    /* 유저 이메일*/
+    gitAddress VARCHAR(100),               /* 유저 깃허브 주소*/
+    point int DEFAULT 0                    /* 유저 점수(0점으로 시작)*/
 );
 
 
 CREATE TABLE projectGenerate (
-    projectId int PRIMARY KEY,
-    projectTitle VARCHAR(100),
-    description TEXT,
-    userId VARCHAR(50),
-    recruitmentStatus VARCHAR(50),
-    recruitmentCount int,
-    generateDate varchar(50),
-    acceptedID VARCHAR(200),
-    likes int DEFAULT 0,
-    views int DEFAULT 0
+    projectId int PRIMARY KEY,           /* 프로젝트 고유 아이디*/
+    projectTitle VARCHAR(100),           /* 프로젝트 제목*/
+    description TEXT,                    /* 프로젝트 설명*/
+    userId VARCHAR(50),                  /* 프로젝트 생성자 아이디*/
+    ProjectStatus int DEFAULT 0,         /* 프로젝트 진행 상태 0 = 진행중, 1 = 완료*/
+    status int DEFAULT 0,                /* 프로젝트 구인 상태 0 = 진행중, 1 = 완료*/
+    recruitmentCount int,                /* 구인 인원 수*/
+    generateDate varchar(50),            /* 프로젝트 생성 날짜*/
+    likes int DEFAULT 0,                 /* 좋아요 수 (생성시 0개)*/
+    views int DEFAULT 0                  /* 조회수 (생성시 0회)*/
 );
 
 
 CREATE TABLE Comments (
-    commentId INT AUTO_INCREMENT PRIMARY KEY,
-    projectId INT,
-    userId VARCHAR(100),
-    content TEXT,
-    createdAt varchar(50),
-    updatedAt varchar(50)
+    commentId INT AUTO_INCREMENT PRIMARY KEY,    /* 댓글 고유 아이디*/
+    projectId INT,                               /* 댓글을 입력한 프로젝트 고유 아이디*/
+    userId VARCHAR(100),                         /* 댓글 생성한 유저 아이디*/
+    content TEXT,                                /* 댓글 내용*/
+    createdAt varchar(50),                       /* 댓글 생성 날짜*/
+    updatedAt varchar(50)                        /* 댓글 수정 날짜*/
 );
 
 ```
