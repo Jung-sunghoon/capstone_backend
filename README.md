@@ -60,7 +60,7 @@ main/resurces/data-postgresql.sql 여기는 테스트용 데이터셋을 넣는 
 
 스웨거에서 각 기능에 대한 설명 및 필요 요소들
 ==================
-
+여기서 필요없는 정보는 NULL로 보내도 됨
 
 ### project-edit-controller
 ```
@@ -112,6 +112,49 @@ projectIId, projectTitle, description, userId, recruitmentCount를 입력하면 
 -> ProjectStatus = 0 (프로젝트 진행중), status = 0(구인 중), likes =0, views = 0 , generateData = 현재 시간(api 내부에서 처리)
 ```
 
+### comment-controller /comments
+```
+댓글 생성 기능
+해당하는 projectId와 댓글 생성자 아이디 userId, 댓글 내용 content 를 가져와 DB에 추가, 나머지는 자동생성
+-> commentId는 자동 증가 생성, createdAt 생성시간은 api 내부에서 처리
+```
+
+### comment-controller /comments/{projectId}
+```
+프로젝트 구인글의 댓글을 가져오는 기능
+해당하는 projectId에 달려있는 모든 댓글 테이블의 모든 정보를 가져옴
+```
+
+### project-list-controller
+```
+모든 프로젝트 구인글 정보를 가져오는 기능
+프로젝트 구인 테이블의 모든 리스트들의 정보를 가져옴
+```
+
+### point-ranking-controller
+```
+포인트 랭킹 기능
+모든 유저를 포인트 순대로 나열후 userId, name, Point 3가지 정보를 가져옴
+```
+
+### id-duplicate-check
+```
+아이디 중복 체크 기능
+아이디를 입력하면 그 아이디가 사용 중인지 사용가능한지 반환
+```
+
+### project-delete-controller
+```
+프로젝트 구인글 삭제 기능
+projectId를 입력받아 그 projectId에 해당하는 모든 정보를 삭제함
+```
+
+### 그외...
+```
+hello-controller
+db-connect
+이 2가지 컨트롤러는 테스트 용
+```
 
 
 진행사항
