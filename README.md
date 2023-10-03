@@ -99,6 +99,19 @@ userId, password, name, nickname, email, gitAddress를 입력받으면 db에 추
 사용자가 어떤 text를 입력하면 projectTitle을 검색해 그 중 해당하는 검색어가 있는 프로젝트 구인글들의 정보를 반환
 ```
 
+### login-controller
+```
+로그인 기능
+userId 와 passoword를 입력해 둘이 일치하면 로그인 성공을 반환, 일치하지 않으면 로그인 실패
+```
+
+### project-generate-controller
+```
+프로젝트 구인글 생성 기능
+projectIId, projectTitle, description, userId, recruitmentCount를 입력하면 나머지 값들은 자동으로 생성
+-> ProjectStatus = 0 (프로젝트 진행중), status = 0(구인 중), likes =0, views = 0 , generateData = 현재 시간(api 내부에서 처리)
+```
+
 
 
 진행사항
