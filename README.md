@@ -108,8 +108,8 @@ userId 와 passoword를 입력해 둘이 일치하면 로그인 성공을 반환
 ### project-generate-controller
 ```
 프로젝트 구인글 생성 기능
-projectIId, projectTitle, description, userId, recruitmentCount를 입력하면 나머지 값들은 자동으로 생성
--> ProjectStatus = 0 (프로젝트 진행중), status = 0(구인 중), likes =0, views = 0 , generateData = 현재 시간(api 내부에서 처리)
+projectTitle, description, userId, recruitmentCount를 입력하면 나머지 값들은 자동으로 생성
+-> projectIId 자동 증가 생성, ProjectStatus = 0 (프로젝트 진행중), status = 0(구인 중), likes =0, views = 0 , generateData = 현재 시간(api 내부에서 처리)
 ```
 
 ### comment-controller /comments
