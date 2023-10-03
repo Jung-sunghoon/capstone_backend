@@ -64,10 +64,40 @@ main/resurces/data-postgresql.sql 여기는 테스트용 데이터셋을 넣는 
 
 ### project-edit-controller
 ```
-구인글을 수정하는 기능
+프로젝트 구인글을 수정하는 기능
 projectTitle, description, ProjectStatus, status, recruitmentCount를 받아와 해당 projectId에 해당하는 5가지 값을 수정
+기존 정보를 가져오는 방법은 project-more-information-controller 사용
 ```
 
+### user-information-controller /user_information
+```
+유저의 정보를 가져오는 기능
+userId 값을 입력하면 그 아이디에 해당하는 테이블의 모든 정보를 가져옴
+```
+
+### user-information-controller /user_information_update
+```
+유저의 정보 업데이트하는 기능
+유저의 userId에 해당하는 name, email, gitAddress를 수정
+```
+
+### project-more-information-controller
+```
+프로젝트 구인글에 자세한 정보를 가져오는 기능
+projectId에 대한 값을 입력하면 모든 값을 가져옴
+```
+
+### sign-up-controller
+```
+회원 가입 기능
+userId, password, name, nickname, email, gitAddress를 입력받으면 db에 추가
+```
+
+### search-project-controller
+```
+프로젝트 구인글 검색 기능
+사용자가 어떤 text를 입력하면 projectTitle을 검색해 그 중 해당하는 검색어가 있는 프로젝트 구인글들의 정보를 반환
+```
 
 
 
