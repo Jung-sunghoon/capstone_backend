@@ -62,7 +62,7 @@ main/resurces/data-postgresql.sql 여기는 테스트용 데이터셋을 넣는 
 ==================
 
 
-*project-edit-controller
+### project-edit-controller
 ```
 구인글을 수정하는 기능
 projectTitle, description, ProjectStatus, status, recruitmentCount를 받아와 해당 projectId에 해당하는 5가지 값을 수정
