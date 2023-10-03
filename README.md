@@ -61,7 +61,8 @@ main/resurces/data-postgresql.sql 여기는 테스트용 데이터셋을 넣는 
 스웨거에서 각 기능에 대한 설명 및 필요 요소들
 ==================
 
-*`project-edit-controller
+`*project-edit-controller
+
 *구인글을 수정하는 기능`
 
 
