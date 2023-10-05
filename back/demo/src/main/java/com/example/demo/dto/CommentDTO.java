@@ -8,6 +8,10 @@ public class CommentDTO {
     private String createdAt;
     private String updatedAt;
 
+    private int commentToUpdateId;
+
+    private int commentToDeleteId;
+
     public int getCommentId() {
         return commentId;
     }
@@ -55,5 +59,13 @@ public class CommentDTO {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public int getCommentToUpdateId() {
+        return commentToUpdateId;
+    }
+
+    public void setCommentToUpdateId(int commentToUpdateId) {
+        this.commentToUpdateId = commentToUpdateId;
     }
 }

@@ -6,4 +6,6 @@ import java.util.List;
 public interface CommentDAO {
     void saveComment(CommentDTO comment);
     List<CommentDTO> getCommentsByProjectId(int projectId);
+    void updateComment(CommentDTO comment);
+    void deleteComment(int commentId);
 }

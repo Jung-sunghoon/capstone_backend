@@ -8,4 +8,15 @@
     <select id="getCommentsByProjectId" parameterType="int" resultType="com.example.demo.dto.CommentDTO">
         SELECT * FROM Comments WHERE projectId = #{projectId}
     </select>
+    <update id="updateComment" parameterType="com.example.demo.dto.CommentDTO">
+        UPDATE Comments
+        SET content = #{content}
+        WHERE commentId = #{commentToUpdateId}
+    </update>
+    <delete id="deleteComment" parameterType="int">
+        DELETE FROM Comments
+        WHERE commentId = #{commentId}
+    </delete>
+
+
 </mapper>

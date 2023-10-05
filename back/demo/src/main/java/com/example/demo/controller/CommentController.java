@@ -45,5 +45,24 @@ public class CommentController {
         return ResponseEntity.ok(comments);
     }
 
+    @PutMapping("/comments/{commentId}")
+    public ResponseEntity<String> updateComment(@PathVariable int commentId, @RequestBody CommentDTO comment) {
+        // CommentDTO 객체에 commentToUpdateId 설정
+        comment.setCommentToUpdateId(commentId);
+
+        // CommentDAO를 사용하여 comment를 수정하는 코드 추가
+        commentDAO.updateComment(comment);
+
+        return ResponseEntity.ok("댓글 수정 완료");
+    }
+
+    @DeleteMapping("/comments/{commentId}")
+    public ResponseEntity<String> deleteComment(@PathVariable int commentId) {
+        // CommentDAO를 사용하여 comment를 삭제하는 코드 추가
+        commentDAO.deleteComment(commentId);
+
+        return ResponseEntity.ok("댓글 삭제 완료");
+    }
+
 }
 
