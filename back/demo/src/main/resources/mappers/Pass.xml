@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.PassDAO">
+    <insert id="insertPass">
+        INSERT INTO pass (userId, projectId, passDate)
+        VALUES (#{userId}, #{projectId}, #{passDate})
+    </insert>
+
+    <select id="listByProjectId" resultType="com.example.demo.dto.PassDTO">
+        SELECT * FROM pass WHERE projectId = #{projectId}
+    </select>
+
+    <!-- 현재 신청한 인원수 체크 -->
+    <select id="countPassByProjectId" resultType="int">
+        SELECT COUNT(*) FROM pass WHERE projectId = #{projectId}
+    </select>
+
+    <!-- projectGenerate에서 사용자가 사전에 선택한 인원수 가져오기 -->
+    <select id="countProjectGenerateByProjectId" resultType="int">
+        SELECT recruitmentCount FROM projectGenerate WHERE projectId = #{projectId}
+    </select>
+
+    <!-- projectGenerate의 status 업데이트 -->
+    <update id="updateProjectGenerateStatus" parameterType="int">
+        UPDATE projectGenerate
+        SET status = 'S_co'
+        WHERE projectId = #{projectId}
+    </update>
+
+    <!-- 해당 프로젝트의 신청자 목록 반환 -->
+    <select id="getApplicationListByProject" resultType="com.example.demo.dto.ApplicationDTO">
+        SELECT * FROM application WHERE projectId = #{projectId}
+    </select>
+
+
+
+</mapper>
