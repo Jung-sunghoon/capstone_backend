@@ -8,4 +8,7 @@
     <select id="checkUserId" parameterType="string" resultType="int">
         SELECT COUNT(userId) FROM users WHERE userId = #{userId}
     </select>
+    <select id="checkNickName" parameterType="string" resultType="int">
+        SELECT COUNT(nickname) FROM users WHERE nickname = #{nickname}
+    </select>
 </mapper>

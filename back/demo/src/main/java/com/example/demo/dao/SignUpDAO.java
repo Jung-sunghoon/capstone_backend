@@ -7,4 +7,6 @@ import java.util.List;
 public interface SignUpDAO {
     void SignUpData(SignUpDTO users);
     int checkUserId(String userID);
+
+    int checkNickName(String nickName);
 }
