@@ -4,4 +4,8 @@
     <delete id="deleteProject">
         DELETE FROM projectGenerate WHERE projectId = #{projectId}
     </delete>
+
+    <delete id="deleteProjectTechMapping">
+        DELETE FROM projectTechMapping WHERE projectId = #{projectId}
+    </delete>
 </mapper>

@@ -17,6 +17,7 @@ public class ProjectDeleteController {
     public ResponseEntity<?> deleteProject(@RequestParam int projectId) {
         try {
             projectDeleteDAO.deleteProject(projectId);
+            projectDeleteDAO.deleteProjectTechMapping(projectId);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
