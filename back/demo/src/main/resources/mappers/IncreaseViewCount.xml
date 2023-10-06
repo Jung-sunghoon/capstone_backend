@@ -4,4 +4,8 @@
     <update id="IncreaseViewCount" parameterType="int">
         UPDATE projectGenerate SET views = views + 1 WHERE projectId = #{projectId}
     </update>
+
+    <update id="IncreasePointProjectMoreInformation" >
+        UPDATE users SET point = point + 1 WHERE userId = #{userId}
+    </update>
 </mapper>
