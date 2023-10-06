@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.ApplicationDAO">
+    <insert id="insertApplication">
+        INSERT INTO application (userId, projectId, applyDate)
+        VALUES (#{userId}, #{projectId}, #{applyDate})
+    </insert>
+    <!-- db에서 삭제 -->
+    <delete id="deleteApplication">
+        DELETE FROM application WHERE userId = #{userId} AND projectId = #{projectId}
+    </delete>
+
+    <select id="listByProjectId" resultType="com.example.demo.dto.ApplicationDTO">
+        SELECT * FROM application WHERE projectId = #{projectId}
+    </select>
+    <!-- 신청유무 조사 -->
+    <select id="findApplicationByUserIdAndProjectId" parameterType="com.example.demo.dto.ApplicationDTO" resultType="com.example.demo.dto.ApplicationDTO">
+        SELECT * FROM application WHERE userId = #{userId} AND projectId = #{projectId}
+    </select>
+
+    <!-- 신청 거절시 status가 거절로 변환 -->
+    <update id="rejectApplication">
+        UPDATE application
+        SET status = 'REJECTED'
+        WHERE userId = #{userId} AND projectId = #{projectId}
+    </update>
+    <!-- 사용자 ID로 신청 정보 조회 -->
+    <select id="getApplicationsByUserId" resultType="com.example.demo.dto.ApplicationDTO">
+        SELECT *
+        FROM application
+        WHERE userId = #{userId}
+    </select>
+
+</mapper>
