@@ -6,28 +6,35 @@ public class ProjectGenerateDTO {
     private String projectTitle;
     private String description;
     private String userId;
-    private String recruitmentStatus;
+    private String projectStatus;
+    private String status;
     private int recruitmentCount;
     private String generateDate;
-    private String acceptedID;
     private int likes;
     private int views;
+
+    // getters and setters
 
     public int getProjectId() {
         return projectId;
     }
-    public void setProjectId(int projectId){
+
+    public void setProjectId(int projectId) {
         this.projectId = projectId;
     }
+
     public String getProjectTitle() {
         return projectTitle;
     }
+
     public void setProjectTitle(String projectTitle) {
         this.projectTitle = projectTitle;
     }
+
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -40,12 +47,20 @@ public class ProjectGenerateDTO {
         this.userId = userId;
     }
 
-    public String getRecruitmentStatus() {
-        return recruitmentStatus;
+    public String getProjectStatus() {
+        return projectStatus;
     }
 
-    public void setRecruitmentStatus(String recruitmentStatus) {
-        this.recruitmentStatus = recruitmentStatus;
+    public void setProjectStatus(String projectStatus) {
+        this.projectStatus = projectStatus;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getRecruitmentCount() {
@@ -62,14 +77,6 @@ public class ProjectGenerateDTO {
 
     public void setGenerateDate(String generateDate) {
         this.generateDate = generateDate;
-    }
-
-    public String getAcceptedID() {
-        return acceptedID;
-    }
-
-    public void setAcceptedID(String acceptedID) {
-        this.acceptedID = acceptedID;
     }
 
     public void setLikes(int likes) {
