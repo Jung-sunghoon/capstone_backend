@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.ProjectListDAO">
-    <select id="getAllProjects" resultType="com.example.demo.dto.ProjectListDTO">
+    <select id="getAllProjects" resultType="com.example.demo.dto.ProjectGenerateDTO">
         SELECT * FROM projectGenerate
+    </select>
+    <!-- 해당 projectId와 관련된 techId 목록 가져오기 -->
+    <select id="getTechStacksByProjectId" resultType="java.lang.Integer">
+        SELECT techId
+        FROM projectTechMapping
+        WHERE projectId = #{projectId}
     </select>
 </mapper>
