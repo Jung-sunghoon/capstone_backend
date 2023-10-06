@@ -8,6 +8,14 @@
     <select id="getCommentsByProjectId" parameterType="int" resultType="com.example.demo.dto.CommentDTO">
         SELECT * FROM Comments WHERE projectId = #{projectId}
     </select>
+    <!-- 프로젝트에 댓글 입력시 포인트 1증가 -->
+    <update id="increasePointComment" >
+        UPDATE users SET point = point + 1 WHERE userId = #{userId}
+    </update>
+    <!-- 프로젝트에 댓글 삭제시 포인트 1감소 -->
+    <update id="decreasePointComment" >
+        UPDATE users SET point = point - 1 WHERE userId = #{userId}
+    </update>
     <update id="updateComment" parameterType="com.example.demo.dto.CommentDTO">
         UPDATE Comments
         SET content = #{content}

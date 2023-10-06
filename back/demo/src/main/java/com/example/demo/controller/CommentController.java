@@ -18,7 +18,7 @@ public class CommentController {
     private CommentDAO commentDAO;
 
     @PostMapping("/comments")
-    public ResponseEntity<String> saveComment(@RequestBody CommentDTO comment) {
+    public ResponseEntity<String> saveComment(@RequestBody CommentDTO comment, @RequestParam String projectGenerationUserId) {
 
         //현재 시간 추가
         long systemTime = System.currentTimeMillis();
@@ -31,6 +31,7 @@ public class CommentController {
         comment.setCreatedAt(dTime);
 
         commentDAO.saveComment(comment);
+        commentDAO.increasePointComment(projectGenerationUserId); // 댓글 입력시 프로젝트 생성자 id에 포인트 1 추가
         return ResponseEntity.ok("댓글 저장 완료");
     }
 
@@ -57,10 +58,10 @@ public class CommentController {
     }
 
     @DeleteMapping("/comments/{commentId}")
-    public ResponseEntity<String> deleteComment(@PathVariable int commentId) {
+    public ResponseEntity<String> deleteComment(@PathVariable int commentId, @RequestParam String projectGenerationUserId) {
         // CommentDAO를 사용하여 comment를 삭제하는 코드 추가
         commentDAO.deleteComment(commentId);
-
+        commentDAO.decreasePointComment(projectGenerationUserId);// 댓글 삭제시 프로젝트 생성자 id에 포인트 1 감소
         return ResponseEntity.ok("댓글 삭제 완료");
     }
 
