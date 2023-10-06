@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.LikesDAO">
+    <!-- 좋아요 추가 -->
+    <insert id="addLike" parameterType="com.example.demo.dto.LikesDTO">
+        INSERT INTO likes (userId, projectId) VALUES (#{userId}, #{projectId})
+    </insert>
+
+    <!-- 좋아요 제거 -->
+    <delete id="removeLike" parameterType="com.example.demo.dto.LikesDTO">
+        DELETE FROM likes WHERE userId = #{userId} AND projectId = #{projectId}
+    </delete>
+
+    <!-- 이미 좋아요 했는지 확인 -->
+    <select id="isLiked" parameterType="com.example.demo.dto.LikesDTO" resultType="boolean">
+        SELECT COUNT(*) > 0 FROM likes WHERE userId = #{userId} AND projectId = #{projectId}
+    </select>
+
+    <!-- 좋아요 1증가 -->
+    <update id="increaseProjectLikes">
+        UPDATE projectGenerate SET likes = likes + 1 WHERE projectId = #{projectId}
+    </update>
+
+    <!-- 좋아요 취소 1감소 -->
+    <update id="decreaseProjectLikes">
+        UPDATE projectGenerate SET likes = likes - 1 WHERE projectId = #{projectId}
+    </update>
+
+    <!-- 좋아요 1증가시 포인트 1증가 -->
+    <update id="increasePointLikes" >
+        UPDATE users SET point = point + 1 WHERE userId = #{userId}
+    </update>
+
+    <!-- 좋아요 1감소시 포인트 1감소 -->
+    <update id="decreasePointLikes" >
+        UPDATE users SET point = point - 1 WHERE userId = #{userId}
+    </update>
+
+</mapper>
