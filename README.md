@@ -68,6 +68,7 @@ main/resurces/data-postgresql.sql 여기는 테스트용 데이터셋을 넣는 
 ```
 프로젝트 구인글을 수정하는 기능
 projectTitle, description, ProjectStatus, status, recruitmentCount를 받아와 해당 projectId에 해당하는 5가지 값을 수정
+추가로 techNames들을 받아와 생성,삭제를 함
 기존 정보를 가져오는 방법은 project-more-information-controller 사용
 ```
 
@@ -101,6 +102,8 @@ execute를 반복해서 누르면  like removed와 Like added가 반복되어 �
 ```
 프로젝트 구인글에 자세한 정보를 가져오는 기능
 projectId에 대한 값을 입력하면 모든 값을 가져옴
+그리고 projectId에 대한 techNames 들도 가져옴
+가져와서 projectId와 techNames에 대한 구조체로 반환함
 ```
 
 ### sign-up-controller
@@ -112,7 +115,9 @@ userId, password, name, nickname, email, gitAddress를 입력받으면 db에 추
 ### search-project-controller
 ```
 프로젝트 구인글 검색 기능
-사용자가 어떤 text를 입력하면 projectTitle을 검색해 그 중 해당하는 검색어가 있는 프로젝트 구인글들의 정보를 반환
+사용자가 어떤 text를 입력하면 projectTitle을 검색해 그 중 해당하는 검색어가 있는 프로젝트 구인글들의 정보를 가져옴
+가져온 projectId에 대한 techNames도 가져옴
+최종적으로 projectId와 techNames에 대한 구조체로 반환함
 ```
 
 ### pass-controller / accept
@@ -152,9 +157,10 @@ projectTitle, description, userId, recruitmentCount를 입력하면 나머지 �
 ```
 프로젝트 구인글 생성 시 기술 스택도 같이 생성
 #아래는 예시
-"projectId": 0,
-  "techIds": [
-    1,2,3
+"projectId": 1,
+  "techNames": [
+    "java",
+    "sql"
   ]
 techStack 테이블에 해당하는 기술스택이 생성 후 projectTechMapping 테이블에 저장됨
 techStack은 '현재 예시 insert문' 에 예시로 저장되어있는 순서
@@ -179,17 +185,27 @@ userId와 ProjectId를 입력 db에서 삭제
 userId를 입력하면 신청 정보 출력
 ```
 
-### comment-controller /comments
+### comment-controller /comments/generate
 ```
 댓글 생성 기능
 해당하는 projectId와 댓글 생성자 아이디 userId, 댓글 내용 content 를 가져와 DB에 추가, 나머지는 자동생성
 -> commentId는 자동 증가 생성, createdAt 생성시간은 api 내부에서 처리
 ```
 
-### comment-controller /comments/{projectId}
+### comment-controller /comments/list
 ```
 프로젝트 구인글의 댓글을 가져오는 기능
 해당하는 projectId에 달려있는 모든 댓글 테이블의 모든 정보를 가져옴
+```
+
+### comment-controller /comments/edit
+```
+프로젝트 구인글의 댓글을 수정하는 기능
+```
+
+### comment-controller /comments/delete
+```
+프로젝트 구인글의 댓글을 삭제하는 기능
 ```
 
 ### project-list-controller
