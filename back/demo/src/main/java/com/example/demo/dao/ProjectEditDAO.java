@@ -8,7 +8,7 @@ public interface ProjectEditDAO {
     void EditProject(ProjectGenerateDTO project);
     void increasePointComplete(String userId);
 
-    List<Integer> getTechStacksByProjectId(int projectId);
-    void addTechId(int projectId, int techId);
-    void deleteTechId(int projectId, int techId);
+    List<String> getTechStacksByProjectId(int projectId);
+    void addTechName(int projectId, String techName);
+    void deleteTechName(int projectId, String techName);
 }

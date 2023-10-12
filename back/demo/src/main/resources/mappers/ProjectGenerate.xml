@@ -13,15 +13,15 @@
     </update>
     <!-- 프로젝트 기술 스텍 추가-->
     <insert id="ProjectTechStack" parameterType="com.example.demo.dto.ProjectTechMapping" >
-        INSERT INTO projectTechMapping (projectId, techId)
-        VALUES (#{projectId}, #{techId})
+        INSERT INTO projectTechMapping (projectId, techName)
+        VALUES (#{projectId}, #{techName})
     </insert>
 
     <!-- 기존에 추가 되어있는지 여부-->
     <select id="checkTechStackExists" resultType="int">
         SELECT COUNT(*)
         FROM projectTechMapping
-        WHERE projectId=#{projectId} AND techId=#{techId}
+        WHERE projectId=#{projectId} AND techName=#{techName}
     </select>
 
 </mapper>

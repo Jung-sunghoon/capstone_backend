@@ -50,18 +50,18 @@ public class ProjectGenerateController {
     //기술 스택 등록
     @PostMapping("/generate_project_Tech")
     public ResponseEntity<String> projectTechGenerate(@RequestBody ProjectTechMapping request) {
-        List<Integer> duplicatedTechIds = new ArrayList<>();
+        List<String> duplicatedTechIds = new ArrayList<>();
 
-        for(int techId : request.getTechIds()) {
+        for(String techName : request.getTechNames()) {
             // 기술 스택 존재 여부 확인
-            Integer count = projectGenerateDAO.checkTechStackExists(request.getProjectId(), techId);
+            Integer count = projectGenerateDAO.checkTechStackExists(request.getProjectId(), techName);
 
             if (count != null && count > 0) {
-                duplicatedTechIds.add(techId);
+                duplicatedTechIds.add(techName);
                 continue;
             }
 
-            projectGenerateDAO.ProjectTechStack(request.getProjectId(), techId);
+            projectGenerateDAO.ProjectTechStack(request.getProjectId(), techName);
         }
 
         if (!duplicatedTechIds.isEmpty()) {

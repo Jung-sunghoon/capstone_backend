@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dao.ProjectSearchDAO;
+import com.example.demo.dto.ProjectEditRequest;
 import com.example.demo.dto.ProjectGenerateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -30,6 +32,14 @@ public class SearchProjectController {
         if (results.isEmpty()) {
             return new ResponseEntity<>("검색 결과가 없습니다", HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(results, HttpStatus.OK);
+
+        List<ProjectEditRequest> projectEditRequest = new ArrayList<>();
+
+        for(ProjectGenerateDTO project : results) {
+            List<String> techNames = projectSearchDAO.getTechStacksByProjectId(project.getProjectId());
+            projectEditRequest.add(new ProjectEditRequest(project, techNames));
+        }
+
+        return new ResponseEntity<>(projectEditRequest, HttpStatus.OK);
     }
 }

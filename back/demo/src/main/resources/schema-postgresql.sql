@@ -26,14 +26,16 @@ CREATE TABLE projectGenerate (
     views int DEFAULT 0                        /* 조회수 (생성시 0회)*/
 );
 
+
 CREATE TABLE techStack (
     techId int PRIMARY KEY AUTO_INCREMENT,      /* 기술 번호 (자동증가)*/
     techName VARCHAR(100) NOT NULL              /* 기술 이름 */
 );
 
+
 CREATE TABLE projectTechMapping (
     projectId int,                      /* 프로젝트 id */
-    techId int                         /* 기술 번호 */
+    techName varchar(100) NOT NULL      /* 기술 이름*/
 );
 
 CREATE TABLE Comments (

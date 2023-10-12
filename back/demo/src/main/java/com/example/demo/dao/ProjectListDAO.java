@@ -6,7 +6,7 @@ import com.example.demo.dto.ProjectGenerateDTO;
 
 public interface ProjectListDAO {
     List<ProjectGenerateDTO> getAllProjects();
-    List<Integer> getTechStacksByProjectId(int projectId);
+    List<String> getTechStacksByProjectId(int projectId);
 }
 
 

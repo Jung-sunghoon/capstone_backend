@@ -11,7 +11,15 @@ VALUES
 (1,'테스트 프로젝트','html 및 text', 'alice123', 'Ps_pr', 'S_pr', 2, '2023-09-14 10:34', 0, 0),
 (2,'테스트 프로젝트2','밥이만든 테스트 프로젝트 ', 'bob456', 'Ps_pr', 'S_pr', 5, '2023-09-14 10:34', 0, 0);
 
-INSERT INTO techStack(techName) /* 아래는 예시 데이터 셋임 1번부터 시작*/
+
+INSERT INTO projectTechMapping(projectId, techName)
+VALUES
+(1,'Java'),
+(1,'CSS'),
+(1,'SQL'),
+(2,'SQL');
+
+INSERT INTO techStack(techName) /* 아래는 예시 데이터 셋 1번부터 시작*/
 VALUES
 ('Java'),
 ('Python'),
@@ -22,9 +30,3 @@ VALUES
 ('C'),
 ('C++'),
 ('C#');
-
-INSERT INTO projectTechMapping(projectId, techId)
-VALUES
-(1,1),
-(1,5),
-(1,6);

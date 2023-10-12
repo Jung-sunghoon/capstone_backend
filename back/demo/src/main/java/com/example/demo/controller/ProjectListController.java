@@ -26,8 +26,8 @@ public class ProjectListController {
         List<ProjectEditRequest> projectEditRequest = new ArrayList<>();
 
         for(ProjectGenerateDTO project : projects) {
-            List<Integer> techIds = projectListDAO.getTechStacksByProjectId(project.getProjectId());
-            projectEditRequest.add(new ProjectEditRequest(project, techIds));
+            List<String> techNames = projectListDAO.getTechStacksByProjectId(project.getProjectId());
+            projectEditRequest.add(new ProjectEditRequest(project, techNames));
         }
 
         return ResponseEntity.ok(projectEditRequest);

@@ -4,19 +4,19 @@ import java.util.List;
 
 public class ProjectEditRequest {
     private ProjectGenerateDTO projectInfo;
-    private List<Integer> techIds;
+    private List<String> techNames;
 
-    public ProjectEditRequest(ProjectGenerateDTO project, List<Integer> techIds) {
+    public ProjectEditRequest(ProjectGenerateDTO project, List<String> techNames) {
         this.projectInfo = project;
-        this.techIds = techIds;
+        this.techNames = techNames;
     }
 
-    public List<Integer> getTechIds() {
-        return techIds;
+    public List<String> getTechNames() {
+        return techNames;
     }
 
-    public void setTechIds(List<Integer> techIds) {
-        this.techIds = techIds;
+    public void setTechNames(List<String> techNames) {
+        this.techNames = techNames;
     }
 
     public void setProjectInfo(ProjectGenerateDTO projectInfo) {

@@ -4,10 +4,8 @@
     <select id="getAllProjects" resultType="com.example.demo.dto.ProjectGenerateDTO">
         SELECT * FROM projectGenerate
     </select>
-    <!-- 해당 projectId와 관련된 techId 목록 가져오기 -->
-    <select id="getTechStacksByProjectId" resultType="java.lang.Integer">
-        SELECT techId
-        FROM projectTechMapping
-        WHERE projectId = #{projectId}
+    <!-- 해당 projectId와 관련된 techNames 목록 가져오기 -->
+    <select id="getTechStacksByProjectId" >
+        SELECT techName FROM projectTechMapping WHERE projectId = #{projectId}
     </select>
 </mapper>

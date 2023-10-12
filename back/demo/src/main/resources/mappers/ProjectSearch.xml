@@ -4,4 +4,11 @@
     <select id="SearchProject" parameterType="string" resultType="com.example.demo.dto.ProjectGenerateDTO">
         SELECT * FROM projectGenerate WHERE projectTitle LIKE CONCAT('%', #{projectTitle}, '%')
     </select>
+
+    <!-- 프로젝트 아이디에 해당하는 기존 techId 가져옴 -->
+    <select id="getTechStacksByProjectId" >
+        SELECT techName
+        FROM projectTechMapping
+        WHERE projectId = #{projectId}
+    </select>
 </mapper>

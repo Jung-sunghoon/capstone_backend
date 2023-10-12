@@ -28,23 +28,23 @@ public class ProjectEditController {
             projectEditDAO.EditProject(project);
 
             // 기존 techIds 가져오기
-            List<Integer> existingTechIds = projectEditDAO.getTechStacksByProjectId(project.getProjectId());
+            List<String> existingTechNames = projectEditDAO.getTechStacksByProjectId(project.getProjectId());
 
             // 비교 & 업데이트
-            List<Integer> newTechIds = request.getTechIds();
+            List<String> newTechNames = request.getTechNames();
 
-            // 삭제할 techIds 찾기: existing에는 있지만 newTechIds에는 없는 아이디
-            List<Integer> toDelete = existingTechIds.stream()
-                    .filter(id -> !newTechIds.contains(id))
+            // 삭제할 techNames 찾기: existing에는 있지만 newTechNames에는 없는 아이디
+            List<String> toDelete = existingTechNames.stream()
+                    .filter(name -> !newTechNames.contains(name))
                     .collect(Collectors.toList());
-            // 추가할 techIds 찾기: newTechIds에는 있지만 existing에는 없는 아이디
-            List<Integer> toAdd = newTechIds.stream()
-                    .filter(id -> !existingTechIds.contains(id))
+            // 추가할 techNames 찾기: techNames에는 있지만 existing에는 없는 아이디
+            List<String> toAdd = newTechNames.stream()
+                    .filter(name -> !existingTechNames.contains(name))
                     .collect(Collectors.toList());
 
             // DB 업데이트
-            toDelete.forEach(id -> projectEditDAO.deleteTechId(project.getProjectId(), id));
-            toAdd.forEach(id -> projectEditDAO.addTechId(project.getProjectId(), id));
+            toDelete.forEach(name -> projectEditDAO.deleteTechName(project.getProjectId(), name));
+            toAdd.forEach(name -> projectEditDAO.addTechName(project.getProjectId(), name));
 
             return new ResponseEntity<>(HttpStatus.OK);
 

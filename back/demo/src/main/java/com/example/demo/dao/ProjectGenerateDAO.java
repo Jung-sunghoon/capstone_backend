@@ -10,7 +10,7 @@ public interface ProjectGenerateDAO {
     Integer ProjectNumCheck();
 
     void IncreasePointProjectGenerate(String userId);
-    void ProjectTechStack(int projectId, int techId);
-    public Integer checkTechStackExists(int projectId, int techId);
+    void ProjectTechStack(int projectId, String techName);
+    public Integer checkTechStackExists(int projectId, String techName);
 
 }

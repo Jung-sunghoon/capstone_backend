@@ -30,7 +30,7 @@ public class ProjectMoreInformationController {
             return new ResponseEntity<>("해당 프로젝트가 없습니다", HttpStatus.NOT_FOUND);
         }
         // 프로젝트와 관련된 techId 목록 가져오기
-        List<Integer> techIds = projectMoreInformationDAO.getTechStacksByProjectId(projectId);
+        List<String> techNames = projectMoreInformationDAO.getTechStacksByProjectId(projectId);
 
 
         projectMoreInformationDAO.IncreaseViewCount(projectId);
@@ -39,7 +39,7 @@ public class ProjectMoreInformationController {
         // 결과와 techIds를 함께 반환하기 위해 Map 사용
         Map<String, Object> response = new HashMap<>();
         response.put("projectInfo", results);
-        response.put("techIds", techIds);
+        response.put("techNames", techNames);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

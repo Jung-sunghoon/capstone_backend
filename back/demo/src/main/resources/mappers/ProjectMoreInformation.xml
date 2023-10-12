@@ -5,8 +5,8 @@
         SELECT * FROM projectGenerate WHERE projectId = #{projectId}
     </select>
     <!-- 프로젝트 아이디로 기술 스텍 가져오는 쿼리문-->
-    <select id="getTechStacksByProjectId" resultType="java.lang.Integer">
-        SELECT techId
+    <select id="getTechStacksByProjectId" >
+        SELECT techName
         FROM projectTechMapping
         WHERE projectId = #{projectId}
     </select>

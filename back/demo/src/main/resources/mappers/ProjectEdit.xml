@@ -9,20 +9,20 @@
         UPDATE users SET point = point + 100 WHERE userId = #{userId}
     </update>
     <!-- 프로젝트 아이디에 해당하는 기존 techId 가져옴 -->
-    <select id="getTechStacksByProjectId" resultType="int">
-        SELECT techId
+    <select id="getTechStacksByProjectId" >
+        SELECT techName
         FROM projectTechMapping
         WHERE projectId = #{projectId}
     </select>
     <!-- 새로운 techId 추가-->
-    <insert id="addTechId">
-        INSERT INTO projectTechMapping (projectId, techId)
-        VALUES (#{projectId}, #{techId})
+    <insert id="addTechName">
+        INSERT INTO projectTechMapping (projectId, techName)
+        VALUES (#{projectId}, #{techName})
     </insert>
     <!-- 기존 techId 삭제-->
-    <delete id="deleteTechId">
+    <delete id="deleteTechName">
         DELETE FROM projectTechMapping
-        WHERE projectId = #{projectId} AND techId = #{techId}
+        WHERE projectId = #{projectId} AND techName = #{techName}
     </delete>
 
 </mapper>
