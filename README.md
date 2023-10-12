@@ -294,7 +294,7 @@ CREATE TABLE techStack (
 
 CREATE TABLE projectTechMapping (
     projectId int,                      /* 프로젝트 id */
-    techId int                         /* 기술 번호 */
+    techName varchar(100) NOT NULL      /* 기술 이름*/
 );
 
 CREATE TABLE Comments (
@@ -358,9 +358,10 @@ VALUES
 ('C++'),
 ('C#');
 
-INSERT INTO projectTechMapping(projectId, techId)
+INSERT INTO projectTechMapping(projectId, techName)
 VALUES
-(1,1),
-(1,5),
-(1,6);
+(1,'Java'),
+(1,'CSS'),
+(1,'SQL'),
+(2,'SQL');
 ```
