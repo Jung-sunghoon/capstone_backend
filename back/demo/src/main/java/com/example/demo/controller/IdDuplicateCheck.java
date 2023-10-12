@@ -17,7 +17,7 @@ public class IdDuplicateCheck {
     private SignUpDAO signUpDAO;
 
 
-    @GetMapping("/IdDuplicateCheck")
+    @GetMapping("/id_duplicate_check")
     public ResponseEntity<String> checkID(@RequestParam String id) {
         if (signUpDAO.checkUserId(id) > 0) {
             return ResponseEntity.status(402).body("이미 사용 중인 아이디입니다.");

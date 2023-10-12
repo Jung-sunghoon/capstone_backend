@@ -13,7 +13,7 @@ public class NickNameDuplicateCheack {
     private SignUpDAO signUpDAO;
 
 
-    @GetMapping("/NickNameDuplicateCheck")
+    @GetMapping("/nick_name_duplicate_check")
     public ResponseEntity<String> checkNickName(@RequestParam String nickName) {
         if (signUpDAO.checkNickName(nickName) > 0) {
             return ResponseEntity.status(402).body("이미 사용 중인 닉네임입니다.");
