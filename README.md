@@ -208,11 +208,18 @@ userId를 입력하면 신청 정보 출력
 프로젝트 구인글의 댓글을 삭제하는 기능
 ```
 
-### project-list-controller
+### project-list-controller /api/projects_list
 ```
 모든 프로젝트 구인글 정보를 가져오는 기능
 프로젝트 구인 테이블의 모든 리스트들의 정보를 가져옴
 + 기술 스택 정보로 가져옴
++ 썸네일 접속 주소도 가져옴
+```
+
+### project-list-controller  /api/projects_image/{projectId}
+```
+projectId에 대한 이미지 가져오는 기능
+projectId를 이용해 프로젝트의 정보를 가져온 후 그 중 이미지 경로와 관련된 정보를 가져와 띄워줌
 ```
 
 ### point-ranking-controller
@@ -244,6 +251,8 @@ projectId를 입력받아 그 projectId에 해당하는 모든 정보를 삭제�
 hello-controller
 db-connect
 이 2가지 컨트롤러는 테스트 용
+image-test-controller
+이 컨트롤러는 서버에 이미지 등록을 확인하기위한 테스트 용
 ```
 
 
@@ -300,8 +309,10 @@ CREATE TABLE projectGenerate (
     recruitmentCount int,                      /* 구인 인원 수*/
     generateDate varchar(50),                  /* 프로젝트 생성 날짜*/
     likes int DEFAULT 0,                       /* 좋아요 수 (생성시 0개)*/
-    views int DEFAULT 0                        /* 조회수 (생성시 0회)*/
+    views int DEFAULT 0,                       /* 조회수 (생성시 0회)*/
+    thumbnail VARCHAR(255)                     /* 썸네일 이미지 저장경로*/
 );
+
 
 CREATE TABLE techStack (
     techId int PRIMARY KEY AUTO_INCREMENT,      /* 기술 번호 (자동증가)*/
@@ -357,10 +368,10 @@ VALUES
 ('charlie789', 'password789', 'Charlie Park', 'charlie', 'charlie.park@email.com', 'https://github.com/charliepark', 0),
 ('david101', 'password101', 'David Cho', 'david', 'david.cho@email.com', 'https://github.com/davidcho', 0);
 
-INSERT INTO projectGenerate(projectId, projectTitle, description, userId, projectStatus, status, recruitmentCount, generateDate, likes, views)
+INSERT INTO projectGenerate(projectId, projectTitle, description, userId, projectStatus, status, recruitmentCount, generateDate, likes, views,thumbnail)
 VALUES
-(1,'테스트 프로젝트','html 및 text', 'alice123', 'Ps_pr', 'S_pr', 2, '2023-09-14 10:34', 0, 0),
-(2,'테스트 프로젝트2','밥이만든 테스트 프로젝트 ', 'bob456', 'Ps_pr', 'S_pr', 5, '2023-09-14 10:34', 0, 0);
+(1,'테스트 프로젝트','html 및 text', 'alice123', 'Ps_pr', 'S_pr', 2, '2023-09-14 10:34', 0, 0,'src\\main\\uploaded_files\\ProjectId_thumbnail\\1\\tset.png'),
+(2,'테스트 프로젝트2','밥이만든 테스트 프로젝트 ', 'bob456', 'Ps_pr', 'S_pr', 5, '2023-09-14 10:34', 0, 0,NULL);
 
 INSERT INTO techStack(techName) /* 아래는 예시 데이터 셋 1번부터 시작*/
 VALUES
