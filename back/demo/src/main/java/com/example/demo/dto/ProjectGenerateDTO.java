@@ -1,5 +1,7 @@
 package com.example.demo.dto;
 
+import java.util.List;
+
 public class ProjectGenerateDTO {
 
     private int projectId;
@@ -12,6 +14,8 @@ public class ProjectGenerateDTO {
     private String generateDate;
     private int likes;
     private int views;
+    private String thumbnail;
+
 
     // getters and setters
 
@@ -93,5 +97,13 @@ public class ProjectGenerateDTO {
 
     public int getViews() {
         return views;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 }

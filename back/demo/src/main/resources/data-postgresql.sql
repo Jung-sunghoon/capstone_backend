@@ -1,4 +1,4 @@
-#여기다가 defualt로 넣을 데이터 집어넣으면 됨
+
 INSERT INTO users(userId, password, name, nickname, email, gitAddress, point)
 VALUES
 ('alice123', 'password123', 'Alice Kim', 'alice', 'alice.kim@email.com', 'https://github.com/alicekim', 100),
@@ -6,10 +6,10 @@ VALUES
 ('charlie789', 'password789', 'Charlie Park', 'charlie', 'charlie.park@email.com', 'https://github.com/charliepark', 0),
 ('david101', 'password101', 'David Cho', 'david', 'david.cho@email.com', 'https://github.com/davidcho', 0);
 
-INSERT INTO projectGenerate(projectId, projectTitle, description, userId, projectStatus, status, recruitmentCount, generateDate, likes, views)
+INSERT INTO projectGenerate(projectId, projectTitle, description, userId, projectStatus, status, recruitmentCount, generateDate, likes, views,thumbnail)
 VALUES
-(1,'테스트 프로젝트','html 및 text', 'alice123', 'Ps_pr', 'S_pr', 2, '2023-09-14 10:34', 0, 0),
-(2,'테스트 프로젝트2','밥이만든 테스트 프로젝트 ', 'bob456', 'Ps_pr', 'S_pr', 5, '2023-09-14 10:34', 0, 0);
+(1,'테스트 프로젝트','html 및 text', 'alice123', 'Ps_pr', 'S_pr', 2, '2023-09-14 10:34', 0, 0,'src\\main\\uploaded_files\\ProjectId_thumbnail\\1\\tset.png'),
+(2,'테스트 프로젝트2','밥이만든 테스트 프로젝트 ', 'bob456', 'Ps_pr', 'S_pr', 5, '2023-09-14 10:34', 0, 0,NULL);
 
 
 INSERT INTO projectTechMapping(projectId, techName)

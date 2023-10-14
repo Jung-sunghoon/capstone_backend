@@ -5,6 +5,7 @@ import java.util.List;
 public class ProjectEditRequest {
     private ProjectGenerateDTO projectInfo;
     private List<String> techNames;
+    private String thumbnail;
 
     public ProjectEditRequest(ProjectGenerateDTO project, List<String> techNames) {
         this.projectInfo = project;
@@ -25,5 +26,13 @@ public class ProjectEditRequest {
 
     public ProjectGenerateDTO getProjectInfo() {
         return projectInfo;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
     }
 }

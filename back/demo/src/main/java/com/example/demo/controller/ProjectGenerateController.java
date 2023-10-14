@@ -3,17 +3,21 @@ package com.example.demo.controller;
 import com.example.demo.dao.ProjectGenerateDAO;
 import com.example.demo.dto.ProjectGenerateDTO;
 import com.example.demo.dto.ProjectTechMapping;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import static java.sql.Types.NULL;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api")
@@ -22,9 +26,13 @@ public class ProjectGenerateController {
     @Autowired
     private ProjectGenerateDAO projectGenerateDAO;
 
-
     @PostMapping("/generate_project")
-    public ResponseEntity<String> projectGenerate(@RequestBody ProjectGenerateDTO project) {
+    public ResponseEntity<String> generateProjectWithImage(
+            @RequestPart("project") String projectJson,
+            @RequestPart("thumbnail") MultipartFile thumbnail) throws Exception {
+
+        ObjectMapper mapper = new ObjectMapper();
+        ProjectGenerateDTO project = mapper.readValue(projectJson, ProjectGenerateDTO.class);
 
         Integer projectNum = projectGenerateDAO.ProjectNumCheck();
         if (projectNum != null && projectNum > 0) {
@@ -40,13 +48,35 @@ public class ProjectGenerateController {
         String dTime = formatter.format(systemTime);
 
         project.setGenerateDate(dTime);
+        if (thumbnail != null && !thumbnail.isEmpty()) {
+            try {
+                byte[] bytes = thumbnail.getBytes();
+                Path dirPath = Paths.get("src", "main", "uploaded_files","ProjectId_thumbnail",Integer.toString(project.getProjectId()));//
+                if (Files.notExists(dirPath)) {
+                    Files.createDirectories(dirPath);
+                }
+                Path filePath = dirPath.resolve(thumbnail.getOriginalFilename());
+                Files.write(filePath, bytes);
+
+                String imagePath = filePath.toString();
+                //imageDAO.saveImage(imagePath);
+                project.setThumbnail(imagePath);
+                //return ResponseEntity.ok(imagePath);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                return ResponseEntity.badRequest().body("이미지 저장 중 오류 발생");
+            }
+        } else {
+            //return ResponseEntity.badRequest().body("제공된 이미지가 없습니다.");
+        }
 
         projectGenerateDAO.ProjectData(project);
         projectGenerateDAO.IncreasePointProjectGenerate((project.getUserId()));
 
         return ResponseEntity.ok("글 올리기 성공");
     }
-    
+
     //기술 스택 등록
     @PostMapping("/generate_project_Tech")
     public ResponseEntity<String> projectTechGenerate(@RequestBody ProjectTechMapping request) {

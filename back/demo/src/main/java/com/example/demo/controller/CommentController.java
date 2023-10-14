@@ -35,7 +35,7 @@ public class CommentController {
         return ResponseEntity.ok("댓글 저장 완료");
     }
 
-    @GetMapping("/comments/list")
+    @GetMapping("/comments_list/{projectId}")
     public ResponseEntity<List<CommentDTO>> getCommentsByProjectId(@PathVariable int projectId) {
         List<CommentDTO> comments = commentDAO.getCommentsByProjectId(projectId);
 
@@ -46,7 +46,7 @@ public class CommentController {
         return ResponseEntity.ok(comments);
     }
 
-    @PutMapping("/comments/edit")
+    @PutMapping("/comments_edit/{projectId}")
     public ResponseEntity<String> updateComment(@PathVariable int commentId, @RequestBody CommentDTO comment) {
         // CommentDTO 객체에 commentToUpdateId 설정
         comment.setCommentToUpdateId(commentId);
@@ -57,7 +57,7 @@ public class CommentController {
         return ResponseEntity.ok("댓글 수정 완료");
     }
 
-    @DeleteMapping("/comments/delete")
+    @DeleteMapping("/comments_delete/{projectId}")
     public ResponseEntity<String> deleteComment(@PathVariable int commentId, @RequestParam String projectGenerationUserId) {
         // CommentDAO를 사용하여 comment를 삭제하는 코드 추가
         commentDAO.deleteComment(commentId);

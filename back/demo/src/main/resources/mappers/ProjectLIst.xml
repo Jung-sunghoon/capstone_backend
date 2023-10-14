@@ -8,4 +8,8 @@
     <select id="getTechStacksByProjectId" >
         SELECT techName FROM projectTechMapping WHERE projectId = #{projectId}
     </select>
+    <!--projectId에 대한  -->
+    <select id="getProjectById" resultType="com.example.demo.dto.ProjectGenerateDTO">
+        SELECT * FROM projectGenerate WHERE projectId = #{projectId}
+    </select>
 </mapper>

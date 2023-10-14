@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>프로젝트 생성 및 이미지 업로드</title>
+</head>
+<body>
+<form action="http://localhost:8090/api/generate_project" method="post" enctype="multipart/form-data">
+  Project Title: <input type="text" id="projectTitle"><br>
+  Description: <input type="text" id="description"><br>
+  userId : <input type="text" id="userId"><br>
+  recruitmentCount : <input type="number" id="recruitmentCount"><br>
+  Image: <input type="file" name="thumbnail"><br>
+  <!-- Hidden input for the JSON data -->
+  <input type="hidden" name="project" id="projectData">
+  <input type="submit" value="프로젝트 및 이미지 생성" onclick="prepareData()">
+</form>
+
+<script>
+function prepareData() {
+  const data = {
+    projectTitle: document.getElementById('projectTitle').value,
+    description: document.getElementById('description').value,
+    userId: document.getElementById('userId').value,
+    recruitmentCount: document.getElementById('recruitmentCount').value,
+  };
+  document.getElementById('projectData').value = JSON.stringify(data);
+}
+</script>
+
+</body>
+</html>

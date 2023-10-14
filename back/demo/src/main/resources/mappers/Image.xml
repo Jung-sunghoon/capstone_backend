@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.ImageDAO">
+    <!-- 이미지 저장 경로를 데이터베이스에 저장하는 쿼리 -->
+    <update id="saveImage">
+        UPDATE projectGenerate
+        SET image_path = #{imagePath}
+        WHERE project_id = #{projectId}
+    </update>
+</mapper>
