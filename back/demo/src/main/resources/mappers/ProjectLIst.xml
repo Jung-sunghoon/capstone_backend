@@ -12,4 +12,8 @@
     <select id="getProjectById" resultType="com.example.demo.dto.ProjectGenerateDTO">
         SELECT * FROM projectGenerate WHERE projectId = #{projectId}
     </select>
+    <select id="getProjectsByUserId" parameterType="string" resultType="com.example.demo.dto.ProjectGenerateDTO">
+        SELECT projectId, projectTitle FROM projectGenerate WHERE userId = #{userId}
+    </select>
+
 </mapper>

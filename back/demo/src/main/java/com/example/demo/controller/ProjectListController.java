@@ -63,5 +63,17 @@ public class ProjectListController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/projects/{userId}")
+    public ResponseEntity<List<ProjectGenerateDTO>> getProjectsByUserId(@PathVariable String userId) {
+        List<ProjectGenerateDTO> projects = projectListDAO.getProjectsByUserId(userId);
+
+        if (projects.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.ok(projects);
+    }
+
+
 }
 

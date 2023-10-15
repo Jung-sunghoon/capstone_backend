@@ -8,6 +8,8 @@ public interface ProjectListDAO {
     List<ProjectGenerateDTO> getAllProjects();
     List<String> getTechStacksByProjectId(int projectId);
     ProjectGenerateDTO getProjectById(int projectId);
+
+    List<ProjectGenerateDTO> getProjectsByUserId(String userId);
 }
 
 
