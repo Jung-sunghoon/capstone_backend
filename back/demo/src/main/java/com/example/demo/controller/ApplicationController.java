@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.dao.ApplicationDAO;
-import com.example.demo.dto.ApplicationDTO;
+import com.example.demo.dao.ApplicationProjectDAO;
+import com.example.demo.dto.ApplicationProjectDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +16,13 @@ import java.util.Locale;
 @RequestMapping("/api")
 public class ApplicationController {
     @Autowired
-    private ApplicationDAO applicationDAO;
+    private ApplicationProjectDAO applicationProjectDAO;
 
     //사용자가 프로젝트 구인글에 신청
     @PostMapping("/apply")
-    public ResponseEntity<?> applyForProject(@RequestBody ApplicationDTO applicationDTO) {
+    public ResponseEntity<?> applyForProject(@RequestBody ApplicationProjectDTO applicationProjectDTO) {
 
-        ApplicationDTO existingApplication = applicationDAO.findApplicationByUserIdAndProjectId(applicationDTO.getUserId(), applicationDTO.getProjectId());
+        ApplicationProjectDTO existingApplication = applicationProjectDAO.findApplicationByUserIdAndProjectId(applicationProjectDTO.getUserId(), applicationProjectDTO.getProjectId());
 
         if(existingApplication != null) {
             return new ResponseEntity<>("이미 신청하셨습니다.", HttpStatus.BAD_REQUEST);
@@ -33,17 +33,17 @@ public class ApplicationController {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
         // format에 맞게 출력하기 위한 문자열 변환
         String dTime = formatter.format(systemTime);
-        applicationDTO.setApplyDate(dTime);
+        applicationProjectDTO.setApplyDate(dTime);
 
-        applicationDAO.insertApplication(applicationDTO);
+        applicationProjectDAO.insertApplication(applicationProjectDTO);
         return new ResponseEntity<>("신청 완료", HttpStatus.CREATED);
     }
 
     //사용자가 프로젝트 신청을 취소하는 api
     @DeleteMapping("/cancel_apply")
-    public ResponseEntity<?> cancelApplication(@RequestBody ApplicationDTO applicationDTO) {
+    public ResponseEntity<?> cancelApplication(@RequestBody ApplicationProjectDTO applicationProjectDTO) {
 
-        int deletedRows = applicationDAO.deleteApplication(applicationDTO.getUserId(), applicationDTO.getProjectId());
+        int deletedRows = applicationProjectDAO.deleteApplication(applicationProjectDTO.getUserId(), applicationProjectDTO.getProjectId());
 
         if (deletedRows > 0) {
             return new ResponseEntity<>("신청 취소 완료", HttpStatus.OK);
@@ -56,7 +56,7 @@ public class ApplicationController {
     @GetMapping("/my_applications")
     public ResponseEntity<?> getMyApplications(@RequestParam String userId) {
 
-        List<ApplicationDTO> applications = applicationDAO.getApplicationsByUserId(userId);
+        List<ApplicationProjectDTO> applications = applicationProjectDAO.getApplicationsByUserId(userId);
 
         if (applications.isEmpty()) {
             return new ResponseEntity<>("신청한 프로젝트가 없습니다.", HttpStatus.BAD_REQUEST);

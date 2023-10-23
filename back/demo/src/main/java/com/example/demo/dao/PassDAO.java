@@ -1,6 +1,6 @@
 package com.example.demo.dao;
 
-import com.example.demo.dto.ApplicationDTO;
+import com.example.demo.dto.ApplicationProjectDTO;
 import com.example.demo.dto.PassDTO;
 
 import java.util.List;
@@ -13,7 +13,7 @@ public interface PassDAO {
     int countProjectGenerateByProjectId(int projectId);
     void updateProjectGenerateStatus(int projectId);
 
-    List<ApplicationDTO> getApplicationListByProject(int projectId);
+    List<ApplicationProjectDTO> getApplicationListByProject(int projectId);
 
 
 

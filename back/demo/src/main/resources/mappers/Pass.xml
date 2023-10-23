@@ -28,7 +28,7 @@
     </update>
 
     <!-- 해당 프로젝트의 신청자 목록 반환 -->
-    <select id="getApplicationListByProject" resultType="com.example.demo.dto.ApplicationDTO">
+    <select id="getApplicationListByProject" resultType="com.example.demo.dto.ApplicationProjectDTO">
         SELECT * FROM application WHERE projectId = #{projectId}
     </select>
 

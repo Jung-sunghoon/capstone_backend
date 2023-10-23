@@ -1,9 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.dao.ApplicationDAO;
+import com.example.demo.dao.ApplicationProjectDAO;
 import com.example.demo.dao.PassDAO;
 import com.example.demo.dto.PassDTO;
-import com.example.demo.dto.ApplicationDTO;
+import com.example.demo.dto.ApplicationProjectDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,14 +18,14 @@ import java.util.Locale;
 @RequestMapping("/api")
 public class PassController {
     @Autowired
-    private ApplicationDAO applicationDAO;
+    private ApplicationProjectDAO applicationProjectDAO;
     @Autowired
     private PassDAO passDAO;
 
     // 프로젝트에 신청한 신청자 목록 반환
     @GetMapping("/apply_list")
-    public ResponseEntity<List<ApplicationDTO>> getApplicantsForProject(@RequestParam int projectId) {
-        List<ApplicationDTO> applicantList = passDAO.getApplicationListByProject(projectId);
+    public ResponseEntity<List<ApplicationProjectDTO>> getApplicantsForProject(@RequestParam int projectId) {
+        List<ApplicationProjectDTO> applicantList = passDAO.getApplicationListByProject(projectId);
         return new ResponseEntity<>(applicantList, HttpStatus.OK);
     }
 
@@ -48,7 +48,7 @@ public class PassController {
         String dTime = formatter.format(systemTime);
         passDTO.setPassDate(dTime);
 
-        int deletedRows = applicationDAO.deleteApplication(passDTO.getUserId(), passDTO.getProjectId()); //기존 신청 테이블에서 삭제
+        int deletedRows = applicationProjectDAO.deleteApplication(passDTO.getUserId(), passDTO.getProjectId()); //기존 신청 테이블에서 삭제
 
         if (deletedRows > 0) { // 삭제가 성공적으로 수행되었는지 확인
             passDAO.insertPass(passDTO); //합격자 추가
@@ -61,9 +61,9 @@ public class PassController {
 
     //프로젝트 생성자가 신청자 거절하는 api
     @PostMapping("/reject")
-    public ResponseEntity<?> rejectApplicant(@RequestBody ApplicationDTO applicationDTO) {
+    public ResponseEntity<?> rejectApplicant(@RequestBody ApplicationProjectDTO applicationProjectDTO) {
 
-        applicationDAO.rejectApplication(applicationDTO.getUserId(), applicationDTO.getProjectId());
+        applicationProjectDAO.rejectApplication(applicationProjectDTO.getUserId(), applicationProjectDTO.getProjectId());
 
         return new ResponseEntity<>("신청을 거절하였습니다.", HttpStatus.OK);
 

@@ -1,6 +1,6 @@
 package com.example.demo.dto;
 
-public class ApplicationDTO {
+public class ApplicationProjectDTO {
     private String userId;
     private int projectId;
     private String status;
