@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.ProjectGenerateDAO">
     <insert id="ProjectData" parameterType="com.example.demo.dto.ProjectGenerateDTO" >
-        INSERT INTO projectGenerate (projectId, projectTitle, description, userId, recruitmentCount, generateDate, thumbnail)
-        VALUES (#{projectId}, #{projectTitle}, #{description}, #{userId}, #{recruitmentCount}, #{generateDate}, #{thumbnail})
+        INSERT INTO projectGenerate (projectId, projectTitle, description, userId, projectStatus, status, recruitmentCount, generateDate, thumbnail)
+        VALUES (#{projectId}, #{projectTitle}, #{description}, #{userId}, #{projectStatus}, #{status}, #{recruitmentCount}, #{generateDate}, #{thumbnail})
     </insert>
     <select id="ProjectNumCheck" parameterType="com.example.demo.dto.ProjectGenerateDTO">
         SELECT MAX(projectId) FROM projectGenerate
@@ -12,15 +12,15 @@
         UPDATE users SET point = point + 10 WHERE userId = #{userId}
     </update>
     <!-- 프로젝트 기술 스텍 추가-->
-    <insert id="ProjectTechStack" parameterType="com.example.demo.dto.ProjectTechMapping" >
-        INSERT INTO projectTechMapping (projectId, techName)
-        VALUES (#{projectId}, #{techName})
+    <insert id="ProjectTechStack" >
+        INSERT INTO projectTechMapping (projectId, techId)
+        VALUES (#{projectId}, #{techId})
     </insert>
 
     <!-- 기존에 추가 되어있는지 여부-->
     <select id="checkTechStackExists" resultType="int">
         SELECT COUNT(*)
         FROM projectTechMapping
-        WHERE projectId=#{projectId} AND techName=#{techName}
+        WHERE projectId=#{projectId} AND techId=#{techId}
     </select>
 </mapper>

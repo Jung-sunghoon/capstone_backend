@@ -29,10 +29,14 @@ public class ProjectGenerateController {
     @PostMapping("/generate_project")
     public ResponseEntity<String> generateProjectWithImage(
             @RequestPart("project") String projectJson,
-            @RequestPart("thumbnail") MultipartFile thumbnail) throws Exception {
+            @RequestPart("thumbnail") MultipartFile thumbnail,
+            @RequestBody ProjectTechMapping techMapping) throws Exception {
 
         ObjectMapper mapper = new ObjectMapper();
         ProjectGenerateDTO project = mapper.readValue(projectJson, ProjectGenerateDTO.class);
+        System.out.println(projectJson);
+        System.out.println(project);
+
 
         Integer projectNum = projectGenerateDAO.ProjectNumCheck();
         if (projectNum != null && projectNum > 0) {
@@ -73,32 +77,31 @@ public class ProjectGenerateController {
 
         projectGenerateDAO.ProjectData(project);
         projectGenerateDAO.IncreasePointProjectGenerate((project.getUserId()));
+        
+        //--------------기술 스택 등록---------------------
+        List<Integer> duplicatedTechIds = new ArrayList<>();
+        techMapping.setProjectId(project.getProjectId());
 
-        return ResponseEntity.ok("글 올리기 성공");
-    }
-
-    //기술 스택 등록
-    @PostMapping("/generate_project_Tech")
-    public ResponseEntity<String> projectTechGenerate(@RequestBody ProjectTechMapping request) {
-        List<String> duplicatedTechIds = new ArrayList<>();
-
-        for(String techName : request.getTechNames()) {
+        for(int techId : techMapping.getTechId()) {
             // 기술 스택 존재 여부 확인
-            Integer count = projectGenerateDAO.checkTechStackExists(request.getProjectId(), techName);
+            Integer count = projectGenerateDAO.checkTechStackExists(techMapping.getProjectId(), techId);
 
             if (count != null && count > 0) {
-                duplicatedTechIds.add(techName);
+                duplicatedTechIds.add(techId);
                 continue;
             }
 
-            projectGenerateDAO.ProjectTechStack(request.getProjectId(), techName);
+            projectGenerateDAO.ProjectTechStack(techMapping.getProjectId(), techId);
         }
 
         if (!duplicatedTechIds.isEmpty()) {
             return new ResponseEntity<>("다음 기술 스택들은 이미 등록되어 있습니다: " + duplicatedTechIds, HttpStatus.BAD_REQUEST);
         }
 
-        return ResponseEntity.ok("기술 스택 등록 완료");
+
+        return ResponseEntity.ok("글 올리기 성공");
     }
+
+
 
 }
