@@ -16,7 +16,7 @@ CREATE TABLE users (
 CREATE TABLE projectGenerate (
     projectId int PRIMARY KEY,                 /* 프로젝트 고유 아이디*/
     projectTitle VARCHAR(100),                 /* 프로젝트 제목*/
-    description TEXT,                          /* 프로젝트 설명*/
+    description LONGTEXT,                          /* 프로젝트 설명*/
     userId VARCHAR(50),                        /* 프로젝트 생성자 아이디*/
     projectStatus VARCHAR(50),                 /* Ps_pr은 프로젝트 진행중,Ps_co는 프로젝트 완료*/
     status VARCHAR(50) ,                       /*S_pr은 구인 진행중, S_co는 구인 완료*/
