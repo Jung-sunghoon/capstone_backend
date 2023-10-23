@@ -18,8 +18,8 @@ CREATE TABLE projectGenerate (
     projectTitle VARCHAR(100),                 /* 프로젝트 제목*/
     description TEXT,                          /* 프로젝트 설명*/
     userId VARCHAR(50),                        /* 프로젝트 생성자 아이디*/
-    projectStatus VARCHAR(50) DEFAULT 'Ps_pr', /* Ps_pr은 프로젝트 진행중,Ps_co는 프로젝트 완료*/
-    status VARCHAR(50) DEFAULT 'S_pr',         /*S_pr은 구인 진행중, S_co는 구인 완료*/
+    projectStatus VARCHAR(50),                 /* Ps_pr은 프로젝트 진행중,Ps_co는 프로젝트 완료*/
+    status VARCHAR(50) ,                       /*S_pr은 구인 진행중, S_co는 구인 완료*/
     recruitmentCount int,                      /* 구인 인원 수*/
     generateDate varchar(50),                  /* 프로젝트 생성 날짜*/
     likes int DEFAULT 0,                       /* 좋아요 수 (생성시 0개)*/
@@ -36,7 +36,7 @@ CREATE TABLE techStack (
 
 CREATE TABLE projectTechMapping (
     projectId int,                      /* 프로젝트 id */
-    techName varchar(100) NOT NULL      /* 기술 이름*/
+    techId int NOT NULL                 /* 기술 번호*/
 );
 
 CREATE TABLE Comments (

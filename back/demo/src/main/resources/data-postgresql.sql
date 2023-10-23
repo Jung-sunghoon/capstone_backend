@@ -12,12 +12,12 @@ VALUES
 (2,'테스트 프로젝트2','밥이만든 테스트 프로젝트 ', 'bob456', 'Ps_pr', 'S_pr', 5, '2023-09-14 10:34', 0, 0,NULL);
 
 
-INSERT INTO projectTechMapping(projectId, techName)
+INSERT INTO projectTechMapping(projectId, techId)
 VALUES
-(1,'Java'),
-(1,'CSS'),
-(1,'SQL'),
-(2,'SQL');
+(1,1),
+(1,5),
+(1,6),
+(2,6);
 
 INSERT INTO techStack(techName) /* 아래는 예시 데이터 셋 1번부터 시작*/
 VALUES
