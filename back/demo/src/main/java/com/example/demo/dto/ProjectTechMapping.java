@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ProjectTechMapping {
     private int projectId;
-    private List<String> techNames;
+    private List<Integer> techId;
 
     public void setProjectId(int projectId) {
         this.projectId = projectId;
@@ -14,11 +14,11 @@ public class ProjectTechMapping {
         return projectId;
     }
 
-    public void setTechNames(List<String> techNames) {
-        this.techNames = techNames;
+    public void setTechId(List<Integer> techId) {
+        this.techId = techId;
     }
 
-    public List<String> getTechNames() {
-        return techNames;
+    public List<Integer> getTechId() {
+        return techId;
     }
 }

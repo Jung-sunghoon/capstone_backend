@@ -8,6 +8,6 @@ import java.util.List;
 public interface ProjectSearchDAO {
 
     List<ProjectGenerateDTO> SearchProject(String projectTitle);
-    List<String> getTechStacksByProjectId(int projectId);
+    List<Integer> getTechStacksByProjectId(int projectId);
 
 }

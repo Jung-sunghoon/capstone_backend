@@ -10,19 +10,19 @@
     </update>
     <!-- 프로젝트 아이디에 해당하는 기존 techId 가져옴 -->
     <select id="getTechStacksByProjectId" >
-        SELECT techName
+        SELECT techId
         FROM projectTechMapping
         WHERE projectId = #{projectId}
     </select>
     <!-- 새로운 techId 추가-->
     <insert id="addTechName">
-        INSERT INTO projectTechMapping (projectId, techName)
-        VALUES (#{projectId}, #{techName})
+        INSERT INTO projectTechMapping (projectId, techId)
+        VALUES (#{projectId}, #{techId})
     </insert>
     <!-- 기존 techId 삭제-->
     <delete id="deleteTechName">
         DELETE FROM projectTechMapping
-        WHERE projectId = #{projectId} AND techName = #{techName}
+        WHERE projectId = #{projectId} AND techId = #{techId}
     </delete>
 
 </mapper>

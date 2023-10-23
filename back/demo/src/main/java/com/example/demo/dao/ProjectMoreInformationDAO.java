@@ -10,5 +10,5 @@ public interface ProjectMoreInformationDAO {
     void IncreaseViewCount(int projectId);
 
     void IncreasePointProjectMoreInformation(String userId);
-    List<String> getTechStacksByProjectId(int projectId);
+    List<Integer> getTechStacksByProjectId(int projectId);
 }

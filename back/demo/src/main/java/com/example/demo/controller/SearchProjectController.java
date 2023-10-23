@@ -36,8 +36,8 @@ public class SearchProjectController {
         List<ProjectEditRequest> projectEditRequest = new ArrayList<>();
 
         for(ProjectGenerateDTO project : results) {
-            List<String> techNames = projectSearchDAO.getTechStacksByProjectId(project.getProjectId());
-            projectEditRequest.add(new ProjectEditRequest(project, techNames));
+            List<Integer> techId = projectSearchDAO.getTechStacksByProjectId(project.getProjectId());
+            projectEditRequest.add(new ProjectEditRequest(project, techId));
         }
 
         return new ResponseEntity<>(projectEditRequest, HttpStatus.OK);

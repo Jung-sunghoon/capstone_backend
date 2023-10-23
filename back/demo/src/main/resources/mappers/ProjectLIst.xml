@@ -6,7 +6,7 @@
     </select>
     <!-- 해당 projectId와 관련된 techNames 목록 가져오기 -->
     <select id="getTechStacksByProjectId" >
-        SELECT techName FROM projectTechMapping WHERE projectId = #{projectId}
+        SELECT techId FROM projectTechMapping WHERE projectId = #{projectId}
     </select>
     <!--projectId에 대한  -->
     <select id="getProjectById" resultType="com.example.demo.dto.ProjectGenerateDTO">

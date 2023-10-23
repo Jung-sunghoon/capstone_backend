@@ -6,7 +6,7 @@
     </select>
     <!-- 프로젝트 아이디로 기술 스텍 가져오는 쿼리문-->
     <select id="getTechStacksByProjectId" >
-        SELECT techName
+        SELECT techId
         FROM projectTechMapping
         WHERE projectId = #{projectId}
     </select>

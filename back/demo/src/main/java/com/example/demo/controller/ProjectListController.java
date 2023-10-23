@@ -33,8 +33,8 @@ public class ProjectListController {
         List<ProjectEditRequest> projectEditRequest = new ArrayList<>();
 
         for(ProjectGenerateDTO project : projects) {
-            List<String> techNames = projectListDAO.getTechStacksByProjectId(project.getProjectId());
-            ProjectEditRequest editRequest = new ProjectEditRequest(project, techNames);
+            List<Integer> techId = projectListDAO.getTechStacksByProjectId(project.getProjectId());
+            ProjectEditRequest editRequest = new ProjectEditRequest(project, techId);
 
             if (project.getThumbnail() != null) {
                 String imageUrl = "http://localhost:8090/api/project_image/" + project.getProjectId();

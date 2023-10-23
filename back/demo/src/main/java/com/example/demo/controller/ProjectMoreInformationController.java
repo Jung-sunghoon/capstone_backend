@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dao.ProjectMoreInformationDAO;
+import com.example.demo.dto.ProjectEditRequest;
 import com.example.demo.dto.ProjectGenerateDTO;
 import com.example.demo.dto.ProjectTechMapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,23 +25,26 @@ public class ProjectMoreInformationController {
     @PostMapping("/single_information_project")
     public ResponseEntity<?> projectInformation(@RequestParam int projectId) {
 
-        ProjectGenerateDTO results = projectMoreInformationDAO.ProjectInformation(projectId);
+        ProjectGenerateDTO project = projectMoreInformationDAO.ProjectInformation(projectId);
 
-        if (results == null) {
+        if (project == null) {
             return new ResponseEntity<>("해당 프로젝트가 없습니다", HttpStatus.NOT_FOUND);
         }
         // 프로젝트와 관련된 techId 목록 가져오기
-        List<String> techNames = projectMoreInformationDAO.getTechStacksByProjectId(projectId);
+        List<Integer> techIds = projectMoreInformationDAO.getTechStacksByProjectId(projectId);
 
 
         projectMoreInformationDAO.IncreaseViewCount(projectId);
-        projectMoreInformationDAO.IncreasePointProjectMoreInformation(results.getUserId());
+        projectMoreInformationDAO.IncreasePointProjectMoreInformation(project.getUserId());
 
-        // 결과와 techIds를 함께 반환하기 위해 Map 사용
-        Map<String, Object> response = new HashMap<>();
-        response.put("projectInfo", results);
-        response.put("techNames", techNames);
+        ProjectEditRequest projectEditRequest = new ProjectEditRequest(project,techIds);
+        if (project.getThumbnail() != null) {
+            String imageUrl = "http://localhost:8090/api/project_image/" + project.getProjectId();
+            projectEditRequest.setThumbnail(imageUrl);
+        }
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+
+
+        return new ResponseEntity<>(projectEditRequest, HttpStatus.OK);
     }
 }
