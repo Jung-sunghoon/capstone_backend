@@ -26,12 +26,14 @@ public class ProjectEditController {
 
     @PutMapping("/update_project")
     public ResponseEntity<?> editProject(
-            @RequestPart("project") String projectJson,
-            @RequestPart(name="thumbnail", required=false) MultipartFile thumbnail) {
+            @RequestPart(name="project", required=false) ProjectGenerateDTO project,
+            @RequestPart(name="thumbnail", required=false) MultipartFile thumbnail,
+            @RequestPart(name="techIds", required=false) List<Integer> newTechIds) throws Exception {
         try {
+            /*
             ObjectMapper mapper = new ObjectMapper();
-            ProjectEditRequest request = mapper.readValue(projectJson, ProjectEditRequest.class);
-            ProjectGenerateDTO project = request.getProjectInfo();
+            ProjectGenerateDTO project = mapper.readValue(projectJson, ProjectGenerateDTO.class);
+            */
 
             if(project.getProjectStatus().equals("Ps_co")){
                 projectEditDAO.increasePointComplete(project.getUserId());
@@ -69,8 +71,7 @@ public class ProjectEditController {
 
             // 기존 techIds 가져오기
             List<Integer> existingTechNames = projectEditDAO.getTechStacksByProjectId(project.getProjectId());
-            // 비교 & 업데이트 로직은 동일하게 유지...
-            List<Integer> newTechIds = request.getTechId();
+            // 비교 & 업데이트 로직
 
             List<Integer> toDelete = existingTechNames.stream()
                     .filter(name -> !newTechIds.contains(name))

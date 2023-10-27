@@ -28,14 +28,15 @@ public class ProjectGenerateController {
 
     @PostMapping("/generate_project")
     public ResponseEntity<String> generateProjectWithImage(
-            @RequestPart("project") String projectJson,
-            @RequestPart("thumbnail") MultipartFile thumbnail,
-            @RequestBody ProjectTechMapping techMapping) throws Exception {
-
+            @RequestPart("project") ProjectGenerateDTO project,
+            @RequestPart(name="thumbnail", required=false) MultipartFile thumbnail,
+            @RequestPart(name="techIds", required=false) List<Integer> techIds) throws Exception {
+        /*
         ObjectMapper mapper = new ObjectMapper();
         ProjectGenerateDTO project = mapper.readValue(projectJson, ProjectGenerateDTO.class);
         System.out.println(projectJson);
         System.out.println(project);
+         */
 
 
         Integer projectNum = projectGenerateDAO.ProjectNumCheck();
@@ -80,18 +81,17 @@ public class ProjectGenerateController {
         
         //--------------기술 스택 등록---------------------
         List<Integer> duplicatedTechIds = new ArrayList<>();
-        techMapping.setProjectId(project.getProjectId());
 
-        for(int techId : techMapping.getTechId()) {
+        for(int techId : techIds) {
             // 기술 스택 존재 여부 확인
-            Integer count = projectGenerateDAO.checkTechStackExists(techMapping.getProjectId(), techId);
+            Integer count = projectGenerateDAO.checkTechStackExists(project.getProjectId(), techId);
 
             if (count != null && count > 0) {
                 duplicatedTechIds.add(techId);
                 continue;
             }
 
-            projectGenerateDAO.ProjectTechStack(techMapping.getProjectId(), techId);
+            projectGenerateDAO.ProjectTechStack(project.getProjectId(), techId);
         }
 
         if (!duplicatedTechIds.isEmpty()) {
