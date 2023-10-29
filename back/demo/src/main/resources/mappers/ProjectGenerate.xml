@@ -23,4 +23,12 @@
         FROM projectTechMapping
         WHERE projectId=#{projectId} AND techId=#{techId}
     </select>
+        <!-- 특정 프로젝트 존재 유무 -->
+    <select id="checkProjectExists" resultType="int" parameterType="int">
+        SELECT EXISTS (
+        SELECT 1
+        FROM projectGenerate
+        WHERE projectId = #{projectId}
+        )
+    </select>
 </mapper>

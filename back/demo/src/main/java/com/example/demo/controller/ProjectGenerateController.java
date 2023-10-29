@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dao.ProjectEditDAO;
 import com.example.demo.dao.ProjectGenerateDAO;
 import com.example.demo.dto.ProjectGenerateDTO;
 import com.example.demo.dto.ProjectTechMapping;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -25,20 +28,79 @@ public class ProjectGenerateController {
 
     @Autowired
     private ProjectGenerateDAO projectGenerateDAO;
+    @Autowired
+    private ProjectEditDAO projectEditDAO;
 
     @PostMapping("/generate_project")
     public ResponseEntity<String> generateProjectWithImage(
             @RequestPart("project") ProjectGenerateDTO project,
             @RequestPart(name="thumbnail", required=false) MultipartFile thumbnail,
             @RequestPart(name="techIds", required=false) List<Integer> techIds) throws Exception {
+
         /*
         ObjectMapper mapper = new ObjectMapper();
         ProjectGenerateDTO project = mapper.readValue(projectJson, ProjectGenerateDTO.class);
         System.out.println(projectJson);
         System.out.println(project);
-         */
+        */
+
+        ///////////프로젝트가 존재하는지 체크//////////////////
+        if(project.getProjectId() >0 && projectGenerateDAO.checkProjectExists(project.getProjectId()) ==1 ){
+
+            if(project.getProjectStatus().equals("Ps_co")){
+                projectEditDAO.increasePointComplete(project.getUserId());
+            }
+
+            if (thumbnail != null && !thumbnail.isEmpty()) {
+                // 기존 이미지 삭제 로직
+                String existingImagePath = project.getThumbnail();
+                if (existingImagePath != null && !existingImagePath.isEmpty()) {
+                    try {
+                        Path existingFilePath = Paths.get(existingImagePath);
+                        if (Files.exists(existingFilePath)) {
+                            Files.delete(existingFilePath);
+                        }
+                    } catch (IOException e) {
+                        // 삭제에 실패한 경우 로그를 기록하거나 적절한 대응을 합니다.
+                        e.printStackTrace();
+                    }
+                }
+
+                // 새 이미지를 저장하는 로직
+                byte[] bytes = thumbnail.getBytes();
+                Path dirPath = Paths.get("src", "main", "uploaded_files", "ProjectId_thumbnail", Integer.toString(project.getProjectId()));
+                if (Files.notExists(dirPath)) {
+                    Files.createDirectories(dirPath);
+                }
+                Path filePath = dirPath.resolve(thumbnail.getOriginalFilename());
+                Files.write(filePath, bytes);
+
+                String imagePath = filePath.toString();
+                project.setThumbnail(imagePath);
+            }
+
+            projectEditDAO.EditProject(project);
+
+            // 기존 techIds 가져오기
+            List<Integer> existingTechNames = projectEditDAO.getTechStacksByProjectId(project.getProjectId());
+            // 비교 & 업데이트 로직
+
+            List<Integer> toDelete = existingTechNames.stream()
+                    .filter(name -> !techIds.contains(name))
+                    .collect(Collectors.toList());
+            List<Integer> toAdd = techIds.stream()
+                    .filter(name -> !existingTechNames.contains(name))
+                    .collect(Collectors.toList());
+
+            toDelete.forEach(ids -> projectEditDAO.deleteTechName(project.getProjectId(), ids));
+            toAdd.forEach(ids -> projectEditDAO.addTechName(project.getProjectId(), ids));
 
 
+            return ResponseEntity.ok("프로젝트 수정 완료");
+        }
+
+
+        //////////////////////새로운 프로젝트 추가///////////////////
         Integer projectNum = projectGenerateDAO.ProjectNumCheck();
         if (projectNum != null && projectNum > 0) {
             project.setProjectId(projectNum + 1);

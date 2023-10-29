@@ -30,8 +30,8 @@ public class ProjectGenerateControllerTest {
     public void testGenerateProjectWithImage() throws Exception {
         // 테스트에 사용될 프로젝트 객체를 준비합니다.
         ProjectGenerateDTO project = new ProjectGenerateDTO();
-        project.setProjectId(3);
-        project.setProjectTitle("테스트 프로젝트");
+        //project.setProjectId(0);
+        project.setProjectTitle("테스트 프로젝트2222222222");
         project.setDescription("스프링부트 자체에서 만들어진 새로운 프로젝트 입니다.");
         project.setUserId("alice123");
         project.setProjectStatus("Ps_pr");

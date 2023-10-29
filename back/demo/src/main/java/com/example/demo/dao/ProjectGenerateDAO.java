@@ -14,4 +14,6 @@ public interface ProjectGenerateDAO {
     void ProjectTechStack(int projectId, int techId);
     public Integer checkTechStackExists(int projectId, int techId);
 
+    int checkProjectExists(int projectId);
+
 }
