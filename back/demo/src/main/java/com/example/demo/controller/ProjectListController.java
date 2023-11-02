@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dao.ProjectListDAO;
 import com.example.demo.dto.ProjectEditRequest;
 import com.example.demo.dto.ProjectGenerateDTO;
+import com.example.demo.dto.ProjectGenerateRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -26,24 +27,38 @@ public class ProjectListController {
     private ProjectListDAO projectListDAO;
 
     @GetMapping("/projects_list")
-    public ResponseEntity<List<ProjectEditRequest>> getAllProjects() {
+    public ResponseEntity<List<ProjectGenerateRequest>> getAllProjects() {
         List<ProjectGenerateDTO> projects = projectListDAO.getAllProjects();
 
-        // ProjectEditRequest 리스트 생성
-        List<ProjectEditRequest> projectEditRequest = new ArrayList<>();
+        // projectGenerateRequest 리스트 생성
+        List<ProjectGenerateRequest> projectGenerateRequest = new ArrayList<>();
 
-        for(ProjectGenerateDTO project : projects) {
+        for (ProjectGenerateDTO project : projects) {
             List<Integer> techId = projectListDAO.getTechStacksByProjectId(project.getProjectId());
-            ProjectEditRequest editRequest = new ProjectEditRequest(project, techId);
+
+            ProjectGenerateRequest generateRequestRequest = new ProjectGenerateRequest();
+            generateRequestRequest.setProjectId(project.getProjectId());
+            generateRequestRequest.setProjectTitle(project.getProjectTitle());
+            generateRequestRequest.setDescription(project.getDescription());
+            generateRequestRequest.setUserId(project.getUserId());
+            generateRequestRequest.setProjectStatus(project.getProjectStatus());
+            generateRequestRequest.setStatus(project.getStatus());
+            generateRequestRequest.setRecruitmentCount(project.getRecruitmentCount());
+            generateRequestRequest.setGenerateDate(project.getGenerateDate());
+            generateRequestRequest.setLikes(project.getLikes());
+            generateRequestRequest.setViews(project.getViews());
+            generateRequestRequest.setThumbnail(project.getThumbnail());
+
+            generateRequestRequest.setTechIds(techId);
 
             if (project.getThumbnail() != null) {
                 String imageUrl = "http://localhost:8090/api/project_image/" + project.getProjectId();
-                editRequest.setThumbnail(imageUrl);
+                generateRequestRequest.setThumbnail(imageUrl);
             }
 
-            projectEditRequest.add(editRequest);
+            projectGenerateRequest.add(generateRequestRequest);
         }
-        return ResponseEntity.ok(projectEditRequest);
+        return ResponseEntity.ok(projectGenerateRequest);
     }
 
     //이미지 주소를 통해 이미지를 가져오는 api
@@ -64,24 +79,38 @@ public class ProjectListController {
     }
 
     @GetMapping("/projects/{userId}")
-    public ResponseEntity<List<ProjectEditRequest>> getProjectsByUserId(@PathVariable String userId) {
+    public ResponseEntity<List<ProjectGenerateRequest>> getProjectsByUserId(@PathVariable String userId) {
         List<ProjectGenerateDTO> projects = projectListDAO.getProjectsByUserId(userId);
 
-        // ProjectEditRequest 리스트 생성
-        List<ProjectEditRequest> projectEditRequest = new ArrayList<>();
+        // projectGenerateRequest 리스트 생성
+        List<ProjectGenerateRequest> projectGenerateRequest = new ArrayList<>();
 
         for (ProjectGenerateDTO project : projects) {
             List<Integer> techId = projectListDAO.getTechStacksByProjectId(project.getProjectId());
-            ProjectEditRequest editRequest = new ProjectEditRequest(project, techId);
+
+            ProjectGenerateRequest generateRequestRequest = new ProjectGenerateRequest();
+            generateRequestRequest.setProjectId(project.getProjectId());
+            generateRequestRequest.setProjectTitle(project.getProjectTitle());
+            generateRequestRequest.setDescription(project.getDescription());
+            generateRequestRequest.setUserId(project.getUserId());
+            generateRequestRequest.setProjectStatus(project.getProjectStatus());
+            generateRequestRequest.setStatus(project.getStatus());
+            generateRequestRequest.setRecruitmentCount(project.getRecruitmentCount());
+            generateRequestRequest.setGenerateDate(project.getGenerateDate());
+            generateRequestRequest.setLikes(project.getLikes());
+            generateRequestRequest.setViews(project.getViews());
+            generateRequestRequest.setThumbnail(project.getThumbnail());
+
+            generateRequestRequest.setTechIds(techId);
 
             if (project.getThumbnail() != null) {
                 String imageUrl = "http://localhost:8090/api/project_image/" + project.getProjectId();
-                editRequest.setThumbnail(imageUrl);
+                generateRequestRequest.setThumbnail(imageUrl);
             }
 
-            projectEditRequest.add(editRequest);
+            projectGenerateRequest.add(generateRequestRequest);
         }
-        return ResponseEntity.ok(projectEditRequest);
+        return ResponseEntity.ok(projectGenerateRequest);
     }
 
 }
