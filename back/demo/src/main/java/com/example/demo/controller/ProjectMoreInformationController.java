@@ -47,7 +47,7 @@ public class ProjectMoreInformationController {
 
         // 프로젝트와 관련된 techId 목록 가져오기
         List<Integer> techIds = projectMoreInformationDAO.getTechStacksByProjectId(projectId);
-
+        generateRequest.setTechIds(techIds);
 
         projectMoreInformationDAO.IncreaseViewCount(projectId);
         projectMoreInformationDAO.IncreasePointProjectMoreInformation(project.getUserId());
