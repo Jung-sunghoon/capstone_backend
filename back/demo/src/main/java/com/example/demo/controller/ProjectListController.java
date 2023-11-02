@@ -64,16 +64,25 @@ public class ProjectListController {
     }
 
     @GetMapping("/projects/{userId}")
-    public ResponseEntity<List<ProjectGenerateDTO>> getProjectsByUserId(@PathVariable String userId) {
+    public ResponseEntity<List<ProjectEditRequest>> getProjectsByUserId(@PathVariable String userId) {
         List<ProjectGenerateDTO> projects = projectListDAO.getProjectsByUserId(userId);
 
-        if (projects.isEmpty()) {
-            return ResponseEntity.noContent().build();
+        // ProjectEditRequest 리스트 생성
+        List<ProjectEditRequest> projectEditRequest = new ArrayList<>();
+
+        for (ProjectGenerateDTO project : projects) {
+            List<Integer> techId = projectListDAO.getTechStacksByProjectId(project.getProjectId());
+            ProjectEditRequest editRequest = new ProjectEditRequest(project, techId);
+
+            if (project.getThumbnail() != null) {
+                String imageUrl = "http://localhost:8090/api/project_image/" + project.getProjectId();
+                editRequest.setThumbnail(imageUrl);
+            }
+
+            projectEditRequest.add(editRequest);
         }
-
-        return ResponseEntity.ok(projects);
+        return ResponseEntity.ok(projectEditRequest);
     }
-
 
 }
 

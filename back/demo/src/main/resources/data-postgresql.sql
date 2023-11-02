@@ -1,10 +1,10 @@
 
-INSERT INTO users(userId, password, name, nickname, email, gitAddress, point)
+INSERT INTO users(userId, password, name, department, studentNumber, nickname, email, gitAddress, point)
 VALUES
-('alice123', 'password123', 'Alice Kim', 'alice', 'alice.kim@email.com', 'https://github.com/alicekim', 100),
-('bob456', 'password456', 'Bob Lee', 'bob', 'bob.lee@email.com', 'https://github.com/boblee', 100),
-('charlie789', 'password789', 'Charlie Park', 'charlie', 'charlie.park@email.com', 'https://github.com/charliepark', 0),
-('david101', 'password101', 'David Cho', 'david', 'david.cho@email.com', 'https://github.com/davidcho', 0);
+('alice123', 'password123', 'Alice Kim', '컴퓨터공학과', 202055000, 'alice', 'alice.kim@email.com', 'https://github.com/alicekim', 100),
+('bob456', 'password456', 'Bob Lee', '인공지능', 201500001,'bob', 'bob.lee@email.com', 'https://github.com/boblee', 100),
+('charlie789', 'password789', 'Charlie Park', '지능형IoT', 201899111,'charlie', 'charlie.park@email.com', 'https://github.com/charliepark', 0),
+('david101', 'password101', 'David Cho', '데이터사이언스', 201898222,'david', 'david.cho@email.com', 'https://github.com/davidcho', 0);
 
 INSERT INTO projectGenerate(projectId, projectTitle, description, userId, projectStatus, status, recruitmentCount, generateDate, likes, views,thumbnail)
 VALUES

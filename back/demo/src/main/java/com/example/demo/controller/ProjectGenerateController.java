@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dao.ProjectEditDAO;
 import com.example.demo.dao.ProjectGenerateDAO;
 import com.example.demo.dto.ProjectGenerateDTO;
+import com.example.demo.dto.ProjectGenerateRequest;
 import com.example.demo.dto.ProjectTechMapping;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +33,11 @@ public class ProjectGenerateController {
     private ProjectEditDAO projectEditDAO;
 
     @PostMapping("/generate_project")
-    public ResponseEntity<String> generateProjectWithImage(
-            @RequestPart("project") ProjectGenerateDTO project,
-            @RequestPart(name="thumbnail", required=false) MultipartFile thumbnail,
-            @RequestPart(name="techIds", required=false) List<Integer> techIds) throws Exception {
+    public ResponseEntity<String> generateProjectWithImage(@RequestBody ProjectGenerateRequest request) throws Exception {
+
+        ProjectGenerateDTO project = request.getProject();
+        MultipartFile thumbnail = request.getThumbnail();
+        List<Integer> techIds = request.getTechIds();
 
         /*
         ObjectMapper mapper = new ObjectMapper();

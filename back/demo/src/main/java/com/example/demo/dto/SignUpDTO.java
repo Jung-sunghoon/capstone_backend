@@ -4,6 +4,8 @@ public class SignUpDTO {
     private String userId;
     private String password;
     private String name;
+    private String department;
+    private int studentNumber;
     private String nickname;
     private String email;
     private String gitAddress;
@@ -31,6 +33,22 @@ public class SignUpDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getStudentNumber() {
+        return studentNumber;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public void setStudentNumber(int studentNumber) {
+        this.studentNumber = studentNumber;
     }
 
     public String getNickname() {

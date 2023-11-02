@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.dto.ProjectGenerateDTO;
+import com.example.demo.dto.ProjectGenerateRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +31,7 @@ public class ProjectGenerateControllerTest {
     public void testGenerateProjectWithImage() throws Exception {
         // 테스트에 사용될 프로젝트 객체를 준비합니다.
         ProjectGenerateDTO project = new ProjectGenerateDTO();
-        //project.setProjectId(0);
+        project.setProjectId(3);
         project.setProjectTitle("테스트 프로젝트2222222222");
         project.setDescription("스프링부트 자체에서 만들어진 새로운 프로젝트 입니다.");
         project.setUserId("alice123");
@@ -38,25 +39,30 @@ public class ProjectGenerateControllerTest {
         project.setStatus("S_pr");
         project.setRecruitmentCount(3);
 
+        List<Integer> techIds = Arrays.asList(1, 2, 5);
+
+        ProjectGenerateRequest projectGenerateRequest = new ProjectGenerateRequest();
+        projectGenerateRequest.setProject(project);
+        System.out.println(project.getProjectId());
+        projectGenerateRequest.setTechIds(techIds);
+        System.out.println(techIds);
+
+
         ObjectMapper objectMapper = new ObjectMapper();
-        String projectJson = objectMapper.writeValueAsString(project);
-        MockMultipartFile projectPart = new MockMultipartFile("project", "", "application/json", projectJson.getBytes());
+        String projectGenerateRequestJson = objectMapper.writeValueAsString(projectGenerateRequest);
+        MockMultipartFile projectPart = new MockMultipartFile("projectGenerateRequest", "", "application/json", projectGenerateRequestJson.getBytes());
+
 
         MockMultipartFile imageFile = new MockMultipartFile(
                 "thumbnail",
-                "filename.jpg",
+                "filenamedddddddd.jpg",
                 "image/jpeg",
                 "image bytes".getBytes()
         );
 
-        List<Integer> techIds = Arrays.asList(1, 2, 5);
-        String techIdsJson = objectMapper.writeValueAsString(techIds);
-        MockMultipartFile techIdsPart = new MockMultipartFile("techIds", "", "application/json", techIdsJson.getBytes());
-
         mockMvc.perform(MockMvcRequestBuilders.multipart("/api/generate_project")
                         .file(imageFile)
                         .file(projectPart)
-                        .file(techIdsPart)
                         .contentType(MediaType.MULTIPART_FORM_DATA))
                 .andExpect(status().isOk());
     }

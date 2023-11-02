@@ -7,6 +7,8 @@ CREATE TABLE users (
     userId VARCHAR(100) PRIMARY KEY,       /* 유저 아이디 */
     password VARCHAR(100),                 /* 유저 비밀번호 */
     name VARCHAR(50),                      /* 유저 이름 */
+    department VARCHAR(100),               /* 유저 학과 */
+    studentNumber int,                     /* 유저 학번 */
     nickname VARCHAR(50),                  /* 유저 닉네임 */
     email VARCHAR(100),                    /* 유저 이메일*/
     gitAddress VARCHAR(100),               /* 유저 깃허브 주소*/
