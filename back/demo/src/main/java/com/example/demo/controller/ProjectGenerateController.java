@@ -36,16 +36,16 @@ public class ProjectGenerateController {
     public ResponseEntity<String> generateProjectWithImage(@RequestBody ProjectGenerateRequest request) throws Exception {
 
         ProjectGenerateDTO project = new ProjectGenerateDTO();
-        project.setProjectId(request.getProjectId());
-        project.setProjectTitle(request.getProjectTitle());
-        project.setDescription(request.getDescription());
-        project.setUserId(request.getUserId());
-        project.setProjectStatus(request.getProjectStatus());
-        project.setStatus(request.getStatus());
-        project.setRecruitmentCount(request.getRecruitmentCount());
-        project.setGenerateDate(request.getGenerateDate());
-        project.setLikes(request.getLikes());
-        project.setViews(request.getViews());
+        if(request.getProjectId() != null) project.setProjectId(request.getProjectId());
+        if(request.getProjectTitle() != null) project.setProjectTitle(request.getProjectTitle());
+        if(request.getDescription() != null) project.setDescription(request.getDescription());
+        if(request.getUserId() != null) project.setUserId(request.getUserId());
+        if(request.getProjectStatus() != null) project.setProjectStatus(request.getProjectStatus());
+        if(request.getStatus() != null) project.setStatus(request.getStatus());
+        if(request.getRecruitmentCount() != null) project.setRecruitmentCount(request.getRecruitmentCount());
+        if(request.getGenerateDate() != null) project.setGenerateDate(request.getGenerateDate());
+        if(request.getLikes() != null) project.setLikes(request.getLikes());
+        if(request.getViews() != null) project.setViews(request.getViews());
 
 
         String thumbnail = request.getThumbnail();

@@ -36,27 +36,28 @@ public class ProjectListController {
         for (ProjectGenerateDTO project : projects) {
             List<Integer> techId = projectListDAO.getTechStacksByProjectId(project.getProjectId());
 
-            ProjectGenerateRequest generateRequestRequest = new ProjectGenerateRequest();
-            generateRequestRequest.setProjectId(project.getProjectId());
-            generateRequestRequest.setProjectTitle(project.getProjectTitle());
-            generateRequestRequest.setDescription(project.getDescription());
-            generateRequestRequest.setUserId(project.getUserId());
-            generateRequestRequest.setProjectStatus(project.getProjectStatus());
-            generateRequestRequest.setStatus(project.getStatus());
-            generateRequestRequest.setRecruitmentCount(project.getRecruitmentCount());
-            generateRequestRequest.setGenerateDate(project.getGenerateDate());
-            generateRequestRequest.setLikes(project.getLikes());
-            generateRequestRequest.setViews(project.getViews());
-            generateRequestRequest.setThumbnail(project.getThumbnail());
+            ProjectGenerateRequest generateRequest = new ProjectGenerateRequest();
+            if(project.getProjectId() > -1) generateRequest.setProjectId(project.getProjectId());
+            if(project.getProjectTitle() != null) generateRequest.setProjectTitle(project.getProjectTitle());
+            if(project.getDescription() != null) generateRequest.setDescription(project.getDescription());
+            if(project.getUserId() != null) generateRequest.setUserId(project.getUserId());
+            if(project.getProjectStatus() != null) generateRequest.setProjectStatus(project.getProjectStatus());
+            if(project.getStatus() != null) generateRequest.setStatus(project.getStatus());
+            if(project.getRecruitmentCount() > -1) generateRequest.setRecruitmentCount(project.getRecruitmentCount());
+            if(project.getGenerateDate() != null) generateRequest.setGenerateDate(project.getGenerateDate());
+            if(project.getLikes() > -1) generateRequest.setLikes(project.getLikes());
+            if(project.getViews() > -1) generateRequest.setViews(project.getViews());
+            if(project.getThumbnail() != null) generateRequest.setThumbnail(project.getThumbnail());
 
-            generateRequestRequest.setTechIds(techId);
+
+            generateRequest.setTechIds(techId);
 
             if (project.getThumbnail() != null) {
                 String imageUrl = "http://localhost:8090/api/project_image/" + project.getProjectId();
-                generateRequestRequest.setThumbnail(imageUrl);
+                generateRequest.setThumbnail(imageUrl);
             }
 
-            projectGenerateRequest.add(generateRequestRequest);
+            projectGenerateRequest.add(generateRequest);
         }
         return ResponseEntity.ok(projectGenerateRequest);
     }
@@ -88,27 +89,27 @@ public class ProjectListController {
         for (ProjectGenerateDTO project : projects) {
             List<Integer> techId = projectListDAO.getTechStacksByProjectId(project.getProjectId());
 
-            ProjectGenerateRequest generateRequestRequest = new ProjectGenerateRequest();
-            generateRequestRequest.setProjectId(project.getProjectId());
-            generateRequestRequest.setProjectTitle(project.getProjectTitle());
-            generateRequestRequest.setDescription(project.getDescription());
-            generateRequestRequest.setUserId(project.getUserId());
-            generateRequestRequest.setProjectStatus(project.getProjectStatus());
-            generateRequestRequest.setStatus(project.getStatus());
-            generateRequestRequest.setRecruitmentCount(project.getRecruitmentCount());
-            generateRequestRequest.setGenerateDate(project.getGenerateDate());
-            generateRequestRequest.setLikes(project.getLikes());
-            generateRequestRequest.setViews(project.getViews());
-            generateRequestRequest.setThumbnail(project.getThumbnail());
+            ProjectGenerateRequest generateRequest = new ProjectGenerateRequest();
+            if(project.getProjectId() > -1) generateRequest.setProjectId(project.getProjectId());
+            if(project.getProjectTitle() != null) generateRequest.setProjectTitle(project.getProjectTitle());
+            if(project.getDescription() != null) generateRequest.setDescription(project.getDescription());
+            if(project.getUserId() != null) generateRequest.setUserId(project.getUserId());
+            if(project.getProjectStatus() != null) generateRequest.setProjectStatus(project.getProjectStatus());
+            if(project.getStatus() != null) generateRequest.setStatus(project.getStatus());
+            if(project.getRecruitmentCount() > -1) generateRequest.setRecruitmentCount(project.getRecruitmentCount());
+            if(project.getGenerateDate() != null) generateRequest.setGenerateDate(project.getGenerateDate());
+            if(project.getLikes() > -1) generateRequest.setLikes(project.getLikes());
+            if(project.getViews() > -1) generateRequest.setViews(project.getViews());
+            if(project.getThumbnail() != null) generateRequest.setThumbnail(project.getThumbnail());
 
-            generateRequestRequest.setTechIds(techId);
+            generateRequest.setTechIds(techId);
 
             if (project.getThumbnail() != null) {
                 String imageUrl = "http://localhost:8090/api/project_image/" + project.getProjectId();
-                generateRequestRequest.setThumbnail(imageUrl);
+                generateRequest.setThumbnail(imageUrl);
             }
 
-            projectGenerateRequest.add(generateRequestRequest);
+            projectGenerateRequest.add(generateRequest);
         }
         return ResponseEntity.ok(projectGenerateRequest);
     }
