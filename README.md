@@ -216,6 +216,11 @@ userId를 입력하면 신청 정보 출력
 + 썸네일 접속 주소도 가져옴
 ```
 
+### project-list-controller /api/projects/{userId}
+```
+해당 아이디에 사람이 올린 글 확인
+```
+
 ### project-list-controller  /api/projects_image/{projectId}
 ```
 projectId에 대한 이미지 가져오는 기능
