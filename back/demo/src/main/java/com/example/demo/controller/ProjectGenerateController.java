@@ -35,7 +35,19 @@ public class ProjectGenerateController {
     @PostMapping("/generate_project")
     public ResponseEntity<String> generateProjectWithImage(@RequestBody ProjectGenerateRequest request) throws Exception {
 
-        ProjectGenerateDTO project = request.getProject();
+        ProjectGenerateDTO project = new ProjectGenerateDTO();
+        project.setProjectId(request.getProjectId());
+        project.setProjectTitle(request.getProjectTitle());
+        project.setDescription(request.getDescription());
+        project.setUserId(request.getUserId());
+        project.setProjectStatus(request.getProjectStatus());
+        project.setStatus(request.getStatus());
+        project.setRecruitmentCount(request.getRecruitmentCount());
+        project.setGenerateDate(request.getGenerateDate());
+        project.setLikes(request.getLikes());
+        project.setViews(request.getViews());
+
+
         MultipartFile thumbnail = request.getThumbnail();
         List<Integer> techIds = request.getTechIds();
 
