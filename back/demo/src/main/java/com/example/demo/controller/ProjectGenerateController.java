@@ -48,7 +48,7 @@ public class ProjectGenerateController {
         project.setViews(request.getViews());
 
 
-        MultipartFile thumbnail = request.getThumbnail();
+        String thumbnail = request.getThumbnail();
         List<Integer> techIds = request.getTechIds();
 
         /*
@@ -86,7 +86,7 @@ public class ProjectGenerateController {
                 if (Files.notExists(dirPath)) {
                     Files.createDirectories(dirPath);
                 }
-                Path filePath = dirPath.resolve(thumbnail.getOriginalFilename());
+                Path filePath = dirPath.resolve("test");
                 Files.write(filePath, bytes);
 
                 String imagePath = filePath.toString();
@@ -136,7 +136,7 @@ public class ProjectGenerateController {
                 if (Files.notExists(dirPath)) {
                     Files.createDirectories(dirPath);
                 }
-                Path filePath = dirPath.resolve(thumbnail.getOriginalFilename());
+                Path filePath = dirPath.resolve("test");
                 Files.write(filePath, bytes);
 
                 String imagePath = filePath.toString();

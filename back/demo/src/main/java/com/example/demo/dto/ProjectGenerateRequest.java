@@ -16,7 +16,7 @@ public class ProjectGenerateRequest {
     private Integer likes;
     private Integer views;
     private ProjectGenerateDTO project;
-    private MultipartFile thumbnail;
+    private String thumbnail;
     private List<Integer> techIds;
 
     // 기본 생성자
@@ -111,11 +111,11 @@ public class ProjectGenerateRequest {
         this.project = project;
     }
 
-    public MultipartFile getThumbnail() {
+    public String getThumbnail() {
         return thumbnail;
     }
 
-    public void setThumbnail(MultipartFile thumbnail) {
+    public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
     }
 
