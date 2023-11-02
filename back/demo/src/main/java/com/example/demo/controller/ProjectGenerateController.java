@@ -136,7 +136,7 @@ public class ProjectGenerateController {
                 if (Files.notExists(dirPath)) {
                     Files.createDirectories(dirPath);
                 }
-                Path filePath = dirPath.resolve("test");
+                Path filePath = dirPath.resolve("test"); //Path filePath = dirPath.resolve(thumbnail.getOriginalFilename());
                 Files.write(filePath, bytes);
 
                 String imagePath = filePath.toString();

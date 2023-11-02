@@ -15,7 +15,6 @@ public class ProjectGenerateRequest {
     private String generateDate;
     private Integer likes;
     private Integer views;
-    private ProjectGenerateDTO project;
     private String thumbnail;
     private List<Integer> techIds;
 
@@ -103,13 +102,6 @@ public class ProjectGenerateRequest {
         this.views = views;
     }
 
-    public ProjectGenerateDTO getProject() {
-        return project;
-    }
-
-    public void setProject(ProjectGenerateDTO project) {
-        this.project = project;
-    }
 
     public String getThumbnail() {
         return thumbnail;
