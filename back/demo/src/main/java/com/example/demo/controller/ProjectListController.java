@@ -51,11 +51,11 @@ public class ProjectListController {
 
 
             generateRequest.setTechIds(techId);
-
+            /*
             if (project.getThumbnail() != null) {
                 String imageUrl = "http://localhost:8090/api/project_image/" + project.getProjectId();
                 generateRequest.setThumbnail(imageUrl);
-            }
+            }*/
 
             projectGenerateRequest.add(generateRequest);
         }
@@ -102,12 +102,14 @@ public class ProjectListController {
             if(project.getViews() > -1) generateRequest.setViews(project.getViews());
             if(project.getThumbnail() != null) generateRequest.setThumbnail(project.getThumbnail());
 
+
             generateRequest.setTechIds(techId);
 
+            /*
             if (project.getThumbnail() != null) {
                 String imageUrl = "http://localhost:8090/api/project_image/" + project.getProjectId();
                 generateRequest.setThumbnail(imageUrl);
-            }
+            }*/
 
             projectGenerateRequest.add(generateRequest);
         }

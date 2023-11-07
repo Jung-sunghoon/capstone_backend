@@ -46,9 +46,10 @@ public class ProjectGenerateController {
         if(request.getGenerateDate() != null) project.setGenerateDate(request.getGenerateDate());
         if(request.getLikes() != null) project.setLikes(request.getLikes());
         if(request.getViews() != null) project.setViews(request.getViews());
+        if(request.getThumbnail() != null) project.setThumbnail(request.getThumbnail());
 
 
-        String thumbnail = request.getThumbnail();
+        //String thumbnail = request.getThumbnail();
         List<Integer> techIds = request.getTechIds();
 
         /*
@@ -65,6 +66,7 @@ public class ProjectGenerateController {
                 projectEditDAO.increasePointComplete(project.getUserId());
             }
 
+            /*
             if (thumbnail != null && !thumbnail.isEmpty()) {
                 // 기존 이미지 삭제 로직
                 String existingImagePath = project.getThumbnail();
@@ -91,7 +93,7 @@ public class ProjectGenerateController {
 
                 String imagePath = filePath.toString();
                 project.setThumbnail(imagePath);
-            }
+            }*/
 
             projectEditDAO.EditProject(project);
 
@@ -129,6 +131,7 @@ public class ProjectGenerateController {
         String dTime = formatter.format(systemTime);
 
         project.setGenerateDate(dTime);
+        /*
         if (thumbnail != null && !thumbnail.isEmpty()) {
             try {
                 byte[] bytes = thumbnail.getBytes();
@@ -150,7 +153,7 @@ public class ProjectGenerateController {
             }
         } else {
             //return ResponseEntity.badRequest().body("제공된 이미지가 없습니다.");
-        }
+        }*/
 
         projectGenerateDAO.ProjectData(project);
         projectGenerateDAO.IncreasePointProjectGenerate((project.getUserId()));
