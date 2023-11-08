@@ -32,4 +32,15 @@
         WHERE userId = #{userId}
     </select>
 
+    <!-- 신청 취소시 cancel로 바뀜 -->
+    <update id="cancelApplication">
+        UPDATE application
+        SET status = 'CANCEL'
+        WHERE userId = #{userId} AND projectId = #{projectId}
+    </update>
+    <!-- 프로젝트 구인이 완료상태인지 -->
+    <select id="projectStatusCheck" resultType="String">
+        SELECT status FROM projectGenerate WHERE projectId = #{projectId}
+    </select>
+
 </mapper>

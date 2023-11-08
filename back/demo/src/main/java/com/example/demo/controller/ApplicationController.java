@@ -21,6 +21,10 @@ public class ApplicationController {
     //사용자가 프로젝트 구인글에 신청
     @PostMapping("/apply")
     public ResponseEntity<?> applyForProject(@RequestBody ApplicationProjectDTO applicationProjectDTO) {
+        if("S_co".equals(applicationProjectDAO.projectStatusCheck(applicationProjectDTO.getProjectId()))){
+            return new ResponseEntity<>("구인이 완료된 프로젝트 입니다.", HttpStatus.CREATED);
+        }
+
 
         ApplicationProjectDTO existingApplication = applicationProjectDAO.findApplicationByUserIdAndProjectId(applicationProjectDTO.getUserId(), applicationProjectDTO.getProjectId());
 
@@ -43,9 +47,9 @@ public class ApplicationController {
     @DeleteMapping("/cancel_apply")
     public ResponseEntity<?> cancelApplication(@RequestBody ApplicationProjectDTO applicationProjectDTO) {
 
-        int deletedRows = applicationProjectDAO.deleteApplication(applicationProjectDTO.getUserId(), applicationProjectDTO.getProjectId());
+        int cancelRows = applicationProjectDAO.cancelApplication(applicationProjectDTO.getUserId(), applicationProjectDTO.getProjectId());
 
-        if (deletedRows > 0) {
+        if (cancelRows > 0) {
             return new ResponseEntity<>("신청 취소 완료", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("신청 정보를 찾을 수 없습니다", HttpStatus.NOT_FOUND);

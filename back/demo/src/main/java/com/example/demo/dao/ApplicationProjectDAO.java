@@ -13,4 +13,7 @@ public interface ApplicationProjectDAO {
 
     void rejectApplication(String userId, int projectId);
     List<ApplicationProjectDTO> getApplicationsByUserId(String userId);
+    int cancelApplication(String userId, int projectId);
+
+    String projectStatusCheck(int projectId);
 }

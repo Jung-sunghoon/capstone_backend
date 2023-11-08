@@ -36,7 +36,6 @@ public class PassController {
         int passCount = passDAO.countPassByProjectId(passDTO.getProjectId());
         int recruitmentCount = passDAO.countProjectGenerateByProjectId(passDTO.getProjectId());
         if (passCount == recruitmentCount) {
-            passDAO.updateProjectGenerateStatus(passDTO.getProjectId());
             return new ResponseEntity<>("구인 인원수를 초과하였습니다.", HttpStatus.BAD_REQUEST);
         }
 
@@ -52,6 +51,10 @@ public class PassController {
 
         if (deletedRows > 0) { // 삭제가 성공적으로 수행되었는지 확인
             passDAO.insertPass(passDTO); //합격자 추가
+            if(passCount+1 == recruitmentCount){
+                passDAO.updateProjectGenerateStatus(passDTO.getProjectId()); //프로젝트 status 갱신
+                passDAO.completeApplyProject(passDTO.getProjectId()); //pending 신청자 rjected로 변경
+            }
         } else {
             return new ResponseEntity<>("신청 정보를 확인해주세요", HttpStatus.INTERNAL_SERVER_ERROR);//db에 신청정보가 없다는 뜻
         }

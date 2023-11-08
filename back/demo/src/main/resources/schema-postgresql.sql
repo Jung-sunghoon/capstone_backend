@@ -59,7 +59,7 @@ CREATE TABLE likes (
 CREATE TABLE application (
     userId VARCHAR(50) NOT NULL,                      /* 신청한 유저 id */
     projectId INT NOT NULL,                           /* 신청한 프로젝트 id */
-    status VARCHAR(50) DEFAULT 'PENDING',             /* PENDING: 대기중, REJECTED: 거절됨 */
+    status VARCHAR(50) DEFAULT 'PENDING',             /* PENDING: 대기중, REJECTED: 거절됨, CANCEL: 취소 */
     applyDate varchar(50)                             /* 신청한 날짜*/
 );
 

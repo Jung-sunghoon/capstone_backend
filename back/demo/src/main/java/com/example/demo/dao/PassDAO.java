@@ -14,6 +14,8 @@ public interface PassDAO {
     void updateProjectGenerateStatus(int projectId);
 
     List<ApplicationProjectDTO> getApplicationListByProject(int projectId);
+    void completeApplyProject(int projectId);
+
 
 
 

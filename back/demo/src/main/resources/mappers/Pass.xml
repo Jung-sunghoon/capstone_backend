@@ -31,7 +31,12 @@
     <select id="getApplicationListByProject" resultType="com.example.demo.dto.ApplicationProjectDTO">
         SELECT * FROM application WHERE projectId = #{projectId}
     </select>
-
+    <!-- 프로젝트가 구인이되면 나머지 신청자 다 거절 -->
+    <update id="completeApplyProject" >
+        UPDATE application
+        SET status = 'REJECTED'
+        WHERE projectId = #{projectId} AND status = 'PENDING'
+    </update>
 
 
 </mapper>
