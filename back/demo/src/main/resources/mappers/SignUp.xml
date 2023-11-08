@@ -11,4 +11,7 @@
     <select id="checkNickName" parameterType="string" resultType="int">
         SELECT COUNT(nickname) FROM users WHERE nickname = #{nickname}
     </select>
+    <select id="checkStudentNumber" resultType="int">
+        SELECT COUNT(studentNumber) FROM users WHERE studentNumber = #{studentNumber}
+    </select>
 </mapper>

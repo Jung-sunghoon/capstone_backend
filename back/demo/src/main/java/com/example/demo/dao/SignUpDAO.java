@@ -9,4 +9,6 @@ public interface SignUpDAO {
     int checkUserId(String userID);
 
     int checkNickName(String nickName);
+
+    int checkStudentNumber(int studentNumber);
 }
