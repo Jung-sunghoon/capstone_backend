@@ -53,11 +53,11 @@ public class ProjectMoreInformationController {
         projectMoreInformationDAO.IncreasePointProjectMoreInformation(project.getUserId());
 
 
-
+        /*
         if (project.getThumbnail() != null) {
             String imageUrl = "http://localhost:8090/api/project_image/" + project.getProjectId();
             generateRequest.setThumbnail(imageUrl);
-        }
+        }*/
 
 
 
