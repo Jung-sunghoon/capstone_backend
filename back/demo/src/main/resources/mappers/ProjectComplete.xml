@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.ProjectCompleteDAO">
+    <update id="giveCompletePoint">
+        UPDATE users
+        SET point = point + 500
+        WHERE userId IN (
+        SELECT userId
+        FROM pass
+        WHERE projectId = #{projectId}
+        );
+    </update>
+
+    <update id="updateProjectStatusToComplete">
+        UPDATE projectGenerate
+        SET projectStatus = 'Ps_co'
+        WHERE projectId = #{projectId}
+    </update>
+
+    <select id="getCreatorUserIdByProjectId" resultType="string">
+        SELECT userId
+        FROM projectGenerate
+        WHERE projectId = #{projectId}
+    </select>
+
+    <update id="givePointsToUser">
+        UPDATE users
+        SET point = point + #{points}
+        WHERE userId = #{userId}
+    </update>
+    <select id="getProjectStatus" resultType="string">
+        SELECT projectStatus
+        FROM projectGenerate
+        WHERE projectId = #{projectId}
+    </select>
+</mapper>

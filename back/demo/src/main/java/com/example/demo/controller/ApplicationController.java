@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dao.ApplicationProjectDAO;
+import com.example.demo.dao.ProjectCompleteDAO;
 import com.example.demo.dto.ApplicationProjectDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,12 +18,19 @@ import java.util.Locale;
 public class ApplicationController {
     @Autowired
     private ApplicationProjectDAO applicationProjectDAO;
+    @Autowired
+    private ProjectCompleteDAO projectCompleteDAO;
 
     //사용자가 프로젝트 구인글에 신청
     @PostMapping("/apply")
     public ResponseEntity<?> applyForProject(@RequestBody ApplicationProjectDTO applicationProjectDTO) {
         if("S_co".equals(applicationProjectDAO.projectStatusCheck(applicationProjectDTO.getProjectId()))){
             return new ResponseEntity<>("구인이 완료된 프로젝트 입니다.", HttpStatus.CREATED);
+        }
+        // 프로젝트 생성자인지 확인합니다.
+        String projectCreatorUserId = projectCompleteDAO.getCreatorUserIdByProjectId(applicationProjectDTO.getProjectId());
+        if (applicationProjectDTO.getUserId().equals(projectCreatorUserId)) {
+            return new ResponseEntity<>("프로젝트 생성자는 신청할 수 없습니다.", HttpStatus.BAD_REQUEST);
         }
 
 
@@ -47,7 +55,7 @@ public class ApplicationController {
     @DeleteMapping("/cancel_apply")
     public ResponseEntity<?> cancelApplication(@RequestBody ApplicationProjectDTO applicationProjectDTO) {
 
-        int cancelRows = applicationProjectDAO.cancelApplication(applicationProjectDTO.getUserId(), applicationProjectDTO.getProjectId());
+        int cancelRows = applicationProjectDAO.deleteApplication(applicationProjectDTO.getUserId(), applicationProjectDTO.getProjectId());
 
         if (cancelRows > 0) {
             return new ResponseEntity<>("신청 취소 완료", HttpStatus.OK);
