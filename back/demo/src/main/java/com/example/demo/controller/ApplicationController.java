@@ -69,8 +69,9 @@ public class ApplicationController {
     public ResponseEntity<?> getMyApplications(@RequestParam String userId) {
 
         List<ApplicationProjectDTO> applications = applicationProjectDAO.getApplicationsByUserId(userId);
+        applications.addAll(applicationProjectDAO.getPassByUserId(userId));
 
-        if (applications.isEmpty()) {
+        if (applications.isEmpty() ) {
             return new ResponseEntity<>("신청한 프로젝트가 없습니다.", HttpStatus.BAD_REQUEST);
 
         } else {
