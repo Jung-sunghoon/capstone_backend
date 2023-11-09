@@ -10,6 +10,7 @@ public class SignUpDTO {
     private String email;
     private String gitAddress;
     private int point;
+    private String techStacks;
 
     public String getUserId() {
         return userId;
@@ -83,16 +84,11 @@ public class SignUpDTO {
         this.point = point;
     }
 
+    public String getTechStacks() {
+        return techStacks;
+    }
 
-    @Override
-    public String toString() {
-        return "SignUpDTO{" +
-                "userId='" + userId + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", email='" + email + '\'' +
-                ", gitAddress='" + gitAddress + '\'' +
-                '}';
+    public void setTechStacks(String techStacks) {
+        this.techStacks = techStacks;
     }
 }

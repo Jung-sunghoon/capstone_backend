@@ -12,7 +12,8 @@ CREATE TABLE users (
     nickname VARCHAR(50),                  /* 유저 닉네임 */
     email VARCHAR(100),                    /* 유저 이메일*/
     gitAddress VARCHAR(100),               /* 유저 깃허브 주소*/
-    point int DEFAULT 0                    /* 유저 점수(0점으로 시작)*/
+    point int DEFAULT 0,                   /* 유저 점수(0점으로 시작)*/
+    techStacks VARCHAR(255)                /* 사용자 태크 스택들*/
 );
 
 CREATE TABLE projectGenerate (
@@ -26,7 +27,7 @@ CREATE TABLE projectGenerate (
     generateDate varchar(50),                  /* 프로젝트 생성 날짜*/
     likes int DEFAULT 0,                       /* 좋아요 수 (생성시 0개)*/
     views int DEFAULT 0,                       /* 조회수 (생성시 0회)*/
-    thumbnail VARCHAR(255)                     /* 썸네일 이미지 저장경로*/
+    thumbnail VARCHAR(255),                    /* 썸네일 이미지 저장경로*/
 );
 
 

@@ -6,6 +6,6 @@
     </select>
 
     <update id="UpdateUserData" parameterType="com.example.demo.dto.SignUpDTO">
-        UPDATE users SET password = #{password}, name = #{name}, department = #{department}, studentNumber = #{studentNumber}, email = #{email}, gitAddress = #{gitAddress} WHERE userId = #{userId}
+        UPDATE users SET password = #{password}, name = #{name}, department = #{department}, studentNumber = #{studentNumber}, email = #{email}, gitAddress = #{gitAddress}, techStacks = #{techStacks} WHERE userId = #{userId}
     </update>
 </mapper>

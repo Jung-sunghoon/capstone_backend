@@ -14,7 +14,7 @@ public class UserInformationController {
     @Autowired
     private UserInformationDAO userInformationDAO;
     
-    //id의 해단하는 유저의 정보를 가져옴
+    //id의 해당하는 유저의 정보를 가져옴
     @GetMapping("/user_information")
     public ResponseEntity<?> UserInformation(@RequestParam String userId) {
         SignUpDTO user = userInformationDAO.UserData(userId);
