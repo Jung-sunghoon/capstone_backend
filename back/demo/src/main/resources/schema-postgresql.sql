@@ -27,7 +27,7 @@ CREATE TABLE projectGenerate (
     generateDate varchar(50),                  /* 프로젝트 생성 날짜*/
     likes int DEFAULT 0,                       /* 좋아요 수 (생성시 0개)*/
     views int DEFAULT 0,                       /* 조회수 (생성시 0회)*/
-    thumbnail VARCHAR(255)                     /* 썸네일 이미지 저장경로*/
+    thumbnail LONGTEXT                         /* 썸네일 이미지 저장경로*/
 );
 
 
