@@ -71,3 +71,9 @@ CREATE TABLE pass (
     status VARCHAR(50) DEFAULT 'ACCEPTED',             /* ACCEPTED: 수락됨 */
     passDate varchar(50)                               /* 합격한 날짜 */
 );
+
+CREATE TABLE ItInformation(
+    title VARCHAR(100),            /* IT 정보 제목 */
+    description LONGTEXT,          /* IT 정보 내용 */
+    generateDate varchar(50)       /* IT 정보 내용 */
+);
