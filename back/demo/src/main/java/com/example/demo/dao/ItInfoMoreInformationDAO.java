@@ -1,7 +1,8 @@
 package com.example.demo.dao;
 
-import com.example.demo.dto.ItInformation;
+import com.example.demo.dto.ItInformationDTO;
 
 public interface ItInfoMoreInformationDAO {
-    ItInformation ItInformation(int itInfoId);
+    ItInformationDTO ItInformation(int itInfoId);
+    void IncreaseViewCountItInfo(int itInfoId);
 }

@@ -1,10 +1,11 @@
 package com.example.demo.dto;
 
-public class ItInformation {
+public class ItInformationDTO {
     private int itInfoId;
     private String title;
     private String description;
     private String generateDate;
+    private int views;
 
     public void setGenerateDate(String generateDate) {
         this.generateDate = generateDate;
@@ -36,5 +37,13 @@ public class ItInformation {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getViews() {
+        return views;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
     }
 }
