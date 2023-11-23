@@ -76,5 +76,6 @@ CREATE TABLE ItInformation(
     itInfoId INT AUTO_INCREMENT PRIMARY KEY,       /* IT 정보 Id */
     title VARCHAR(100),                            /* IT 정보 제목 */
     description LONGTEXT,                          /* IT 정보 내용 */
-    generateDate varchar(50)                       /* IT 정보 생성일 */
+    generateDate varchar(50),                      /* IT 정보 생성일 */
+    views int DEFAULT 0                            /* IT 정보 조회수 */
 );
