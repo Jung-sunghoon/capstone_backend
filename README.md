@@ -359,6 +359,15 @@ CREATE TABLE pass (
     passDate varchar(50)                               /* 합격한 날짜 */
 );
 
+/* IT 정보 테이블 */
+CREATE TABLE ItInformation(
+    itInfoId INT AUTO_INCREMENT PRIMARY KEY,       /* IT 정보 Id */
+    title VARCHAR(100),                            /* IT 정보 제목 */
+    description LONGTEXT,                          /* IT 정보 내용 */
+    generateDate varchar(50),                      /* IT 정보 생성일 */
+    views int                                      /* IT 정보 조회수 */
+);
+
 ```
 
 현재 예시 insert문
