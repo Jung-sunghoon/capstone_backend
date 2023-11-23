@@ -73,7 +73,8 @@ CREATE TABLE pass (
 );
 
 CREATE TABLE ItInformation(
-    title VARCHAR(100),            /* IT 정보 제목 */
-    description LONGTEXT,          /* IT 정보 내용 */
-    generateDate varchar(50)       /* IT 정보 생성일 */
+    itInfoId INT AUTO_INCREMENT PRIMARY KEY,       /* IT 정보 Id */
+    title VARCHAR(100),                            /* IT 정보 제목 */
+    description LONGTEXT,                          /* IT 정보 내용 */
+    generateDate varchar(50)                       /* IT 정보 생성일 */
 );
