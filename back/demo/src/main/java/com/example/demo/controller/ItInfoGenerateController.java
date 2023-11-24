@@ -1,10 +1,13 @@
 package com.example.demo.controller;
 
+import com.example.demo.dao.ItInfoEditDAO;
 import com.example.demo.dao.ItInfoGenerateDAO;
 import com.example.demo.dto.ItInfoGenerateDTO;
+import com.example.demo.dto.ItInfoEditRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -15,28 +18,43 @@ public class ItInfoGenerateController {
 
     @Autowired
     private ItInfoGenerateDAO itInfoGenerateDAO;
+    @Autowired
+    private ItInfoEditDAO itInfoEditDAO;
 
     @PostMapping("/generate_it_info")
-    public ResponseEntity<String> generateItInfo(@RequestBody ItInfoGenerateDTO request) {
+    public ResponseEntity<String> generateOrUpdateItInfo(@RequestBody ItInfoEditRequest request) {
 
-        ItInfoGenerateDTO itInfo = new ItInfoGenerateDTO();
+        if (request.getItInfoId() >= 0 && itInfoEditDAO.checkItInfoExists(request.getItInfoId()) == 1) {
 
+            ItInfoGenerateDTO itInfo = new ItInfoGenerateDTO();
+            itInfo.setItInfoId(request.getItInfoId());
+            if (request.getTitle() != null) itInfo.setTitle(request.getTitle());
+            if (request.getDescription() != null) itInfo.setDescription(request.getDescription());
+            if (request.getGenerateDate() != null) itInfo.setGenerateDate(request.getGenerateDate());
+            if (request.getViews() != null) itInfo.setViews(request.getViews());
 
-        if (request.getTitle() != null) itInfo.setTitle(request.getTitle());
-        if (request.getDescription() != null) itInfo.setDescription(request.getDescription());
-        if (request.getGenerateDate() != null) itInfo.setGenerateDate(request.getGenerateDate());
-        if (request.getViews() != null) itInfo.setViews(request.getViews());
+            itInfoEditDAO.updateItInfo(itInfo);
 
+            return ResponseEntity.ok("IT 정보 글 수정 완료");
 
-        if (itInfo.getGenerateDate() == null) {
-            long systemTime = System.currentTimeMillis();
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
-            String dTime = formatter.format(systemTime);
-            itInfo.setGenerateDate(dTime);
+        } else {
+            // Entry does not exist, create a new entry
+            ItInfoGenerateDTO itInfo = new ItInfoGenerateDTO();
+            if (request.getTitle() != null) itInfo.setTitle(request.getTitle());
+            if (request.getDescription() != null) itInfo.setDescription(request.getDescription());
+            if (request.getGenerateDate() != null) itInfo.setGenerateDate(request.getGenerateDate());
+            if (request.getViews() != null) itInfo.setViews(request.getViews());
+
+            if (itInfo.getGenerateDate() == null) {
+                long systemTime = System.currentTimeMillis();
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
+                String dTime = formatter.format(systemTime);
+                itInfo.setGenerateDate(dTime);
+            }
+
+            itInfoGenerateDAO.saveItInfo(itInfo);
+
+            return ResponseEntity.ok("IT 정보 글 등록 완료");
         }
-
-        itInfoGenerateDAO.saveItInfo(itInfo);
-
-        return ResponseEntity.ok("IT 정보 등록 완료");
     }
 }
