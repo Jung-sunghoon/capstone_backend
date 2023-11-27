@@ -3,8 +3,8 @@
 <mapper namespace="com.example.demo.dao.ItInfoGenerateDAO">
 
     <insert id="saveItInfo" parameterType="com.example.demo.dto.ItInfoGenerateDTO">
-        INSERT INTO ItInformation (title, description, generateDate, views)
-        VALUES (#{title}, #{description}, #{generateDate}, #{views})
+        INSERT INTO ItInformation (title, description, generateDate)
+        VALUES (#{title}, #{description}, #{generateDate})
     </insert>
 
 </mapper>
