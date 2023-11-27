@@ -24,14 +24,12 @@ public class ItInfoGenerateController {
     @PostMapping("/generate_it_info")
     public ResponseEntity<String> generateOrUpdateItInfo(@RequestBody ItInfoEditRequest request) {
 
-        if (request.getItInfoId() >= 0 && itInfoEditDAO.checkItInfoExists(request.getItInfoId()) == 1) {
+        if (request.getItInfoId() > 0 && itInfoEditDAO.checkItInfoExists(request.getItInfoId()) == 1) {
 
             ItInfoGenerateDTO itInfo = new ItInfoGenerateDTO();
             itInfo.setItInfoId(request.getItInfoId());
             if (request.getTitle() != null) itInfo.setTitle(request.getTitle());
             if (request.getDescription() != null) itInfo.setDescription(request.getDescription());
-            if (request.getGenerateDate() != null) itInfo.setGenerateDate(request.getGenerateDate());
-            if (request.getViews() != null) itInfo.setViews(request.getViews());
 
             itInfoEditDAO.updateItInfo(itInfo);
 
@@ -42,8 +40,6 @@ public class ItInfoGenerateController {
             ItInfoGenerateDTO itInfo = new ItInfoGenerateDTO();
             if (request.getTitle() != null) itInfo.setTitle(request.getTitle());
             if (request.getDescription() != null) itInfo.setDescription(request.getDescription());
-            if (request.getGenerateDate() != null) itInfo.setGenerateDate(request.getGenerateDate());
-            if (request.getViews() != null) itInfo.setViews(request.getViews());
 
             if (itInfo.getGenerateDate() == null) {
                 long systemTime = System.currentTimeMillis();

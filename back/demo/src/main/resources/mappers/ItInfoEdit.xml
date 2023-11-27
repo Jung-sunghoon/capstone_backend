@@ -9,9 +9,7 @@
     <update id="updateItInfo" parameterType="com.example.demo.dto.ItInfoGenerateDTO">
         UPDATE ItInformation
         SET title = #{title},
-        description = #{description},
-        generateDate = #{generateDate},
-        views = #{views}
+        description = #{description}
         WHERE itInfoId = #{itInfoId}
     </update>
 
