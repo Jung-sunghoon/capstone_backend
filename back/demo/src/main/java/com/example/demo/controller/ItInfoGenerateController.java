@@ -41,12 +41,12 @@ public class ItInfoGenerateController {
             if (request.getTitle() != null) itInfo.setTitle(request.getTitle());
             if (request.getDescription() != null) itInfo.setDescription(request.getDescription());
 
-            if (itInfo.getGenerateDate() == null) {
-                long systemTime = System.currentTimeMillis();
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
-                String dTime = formatter.format(systemTime);
-                itInfo.setGenerateDate(dTime);
-            }
+
+            long systemTime = System.currentTimeMillis();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
+            String dTime = formatter.format(systemTime);
+            itInfo.setGenerateDate(dTime);
+
 
             itInfoGenerateDAO.saveItInfo(itInfo);
             System.out.println("IT 정보 글 등록 성공");
