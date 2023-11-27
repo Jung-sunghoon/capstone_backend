@@ -24,7 +24,7 @@ public class ItInfoMoreInformationController {
         }
         //조회수 증가
         itInfoMoreInformationDAO.IncreaseViewCountItInfo(itInfoId);
-
+        System.out.println(itInfo.getItInfoId()+"번 IT 정보 글 불러오기 성공");
         return new ResponseEntity<>(itInfo, HttpStatus.OK);
     }
 }

@@ -40,6 +40,12 @@ public class ApplicationController {
             return new ResponseEntity<>("이미 신청하셨습니다.", HttpStatus.BAD_REQUEST);
         }
 
+        ApplicationProjectDTO existingPass = applicationProjectDAO.findPassByUserIdAndProjectId(applicationProjectDTO.getUserId(), applicationProjectDTO.getProjectId());
+        
+        if(existingPass != null) {
+            return new ResponseEntity<>("이미 합격하셨습니다.", HttpStatus.BAD_REQUEST);
+        }
+
         long systemTime = System.currentTimeMillis();
         // 출력 형태를 위한 formmater
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
@@ -72,9 +78,11 @@ public class ApplicationController {
         applications.addAll(applicationProjectDAO.getPassByUserId(userId));
 
         if (applications.isEmpty() ) {
-            return new ResponseEntity<>("신청한 프로젝트가 없습니다.", HttpStatus.BAD_REQUEST);
+            System.out.println("아이디 "+userId+"는 신청한 프로젝트가 없음");
+            return new ResponseEntity<>("신청한 프로젝트가 없습니다.", HttpStatus.NOT_FOUND);
 
         } else {
+            System.out.println("아이디 "+userId+"의 신청한 프로젝트 리스트 생성완료. 리스트 전송중......");
             return new ResponseEntity<>(applications, HttpStatus.OK);
         }
     }

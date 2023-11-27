@@ -21,6 +21,7 @@ public class UserInformationController {
         if (user == null) {
             return new ResponseEntity<>("회원 정보가 없습니다", HttpStatus.NOT_FOUND);
         }
+        System.out.println(userId+"의 정보 불러오기 성공");
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 

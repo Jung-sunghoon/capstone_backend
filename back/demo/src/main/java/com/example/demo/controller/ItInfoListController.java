@@ -24,9 +24,11 @@ public class ItInfoListController {
         List<ItInfoListDTO> itInfoList = itInfoListDAO.getItInfoList();
 
         if (itInfoList.isEmpty()) {
+            System.out.println("it정보 리스트 생성 실패");
             return ResponseEntity.noContent().build();
         }
 
+        System.out.println("it정보 리스트 생성 완료");
         return ResponseEntity.ok(itInfoList);
     }
 }

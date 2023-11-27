@@ -111,7 +111,7 @@ public class ProjectGenerateController {
             toDelete.forEach(ids -> projectEditDAO.deleteTechName(project.getProjectId(), ids));
             toAdd.forEach(ids -> projectEditDAO.addTechName(project.getProjectId(), ids));
 
-
+            System.out.println(project.getProjectId()+"번 프로젝트 수정완료");
             return ResponseEntity.ok("프로젝트 수정 완료");
         }
 
@@ -174,10 +174,11 @@ public class ProjectGenerateController {
         }
 
         if (!duplicatedTechIds.isEmpty()) {
+
             return new ResponseEntity<>("다음 기술 스택들은 이미 등록되어 있습니다: " + duplicatedTechIds, HttpStatus.BAD_REQUEST);
         }
 
-
+        System.out.println(project.getProjectId()+"번 프로젝트 생성완료");
         return ResponseEntity.ok("글 올리기 성공");
     }
 

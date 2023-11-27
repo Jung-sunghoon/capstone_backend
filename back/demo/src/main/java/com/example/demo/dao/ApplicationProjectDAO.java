@@ -7,6 +7,7 @@ import java.util.List;
 public interface ApplicationProjectDAO {
     void insertApplication(ApplicationProjectDTO applicationProjectDTO);
     ApplicationProjectDTO findApplicationByUserIdAndProjectId(String userId, int projectId);
+    ApplicationProjectDTO findPassByUserIdAndProjectId(String userId, int projectId);
 
     int deleteApplication(String userId, int projectId);
     List<ApplicationProjectDTO> listByProjectId(int projectId);

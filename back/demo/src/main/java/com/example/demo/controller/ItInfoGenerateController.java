@@ -53,7 +53,7 @@ public class ItInfoGenerateController {
             }
 
             itInfoGenerateDAO.saveItInfo(itInfo);
-
+            System.out.println("IT 정보 글 등록 성공");
             return ResponseEntity.ok("IT 정보 글 등록 완료");
         }
     }

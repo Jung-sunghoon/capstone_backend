@@ -29,6 +29,7 @@ public class ProjectMoreInformationController {
         ProjectGenerateDTO project = projectMoreInformationDAO.ProjectInformation(projectId);
 
         if (project == null) {
+            System.out.println("불러오기 중 오류 발생");
             return new ResponseEntity<>("해당 프로젝트가 없습니다", HttpStatus.NOT_FOUND);
         }
 
@@ -60,7 +61,7 @@ public class ProjectMoreInformationController {
         }*/
 
 
-
+        System.out.println("프로젝트 ID "+projectId+"번 불러오기 성공");
         return new ResponseEntity<>(generateRequest, HttpStatus.OK);
     }
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.ProjectListDAO">
     <select id="getAllProjects" resultType="com.example.demo.dto.ProjectGenerateDTO">
-        SELECT * FROM projectGenerate
+        SELECT projectId, projectTitle, userId, projectStatus, status, recruitmentCount, generateDate, likes, views,thumbnail  FROM projectGenerate
     </select>
     <!-- 해당 projectId와 관련된 techNames 목록 가져오기 -->
     <select id="getTechStacksByProjectId" >

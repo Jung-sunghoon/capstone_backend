@@ -34,12 +34,13 @@ public class ProjectListController {
         List<ProjectGenerateRequest> projectGenerateRequest = new ArrayList<>();
 
         for (ProjectGenerateDTO project : projects) {
+
             List<Integer> techId = projectListDAO.getTechStacksByProjectId(project.getProjectId());
 
             ProjectGenerateRequest generateRequest = new ProjectGenerateRequest();
             if(project.getProjectId() > -1) generateRequest.setProjectId(project.getProjectId());
             if(project.getProjectTitle() != null) generateRequest.setProjectTitle(project.getProjectTitle());
-            if(project.getDescription() != null) generateRequest.setDescription(project.getDescription());
+            //if(project.getDescription() != null) generateRequest.setDescription(project.getDescription());
             if(project.getUserId() != null) generateRequest.setUserId(project.getUserId());
             if(project.getProjectStatus() != null) generateRequest.setProjectStatus(project.getProjectStatus());
             if(project.getStatus() != null) generateRequest.setStatus(project.getStatus());
@@ -58,7 +59,9 @@ public class ProjectListController {
             }*/
 
             projectGenerateRequest.add(generateRequest);
+
         }
+        System.out.println("프로젝트 리스트 생성 완료. 리스트 전송중......");
         return ResponseEntity.ok(projectGenerateRequest);
     }
 
@@ -113,6 +116,7 @@ public class ProjectListController {
 
             projectGenerateRequest.add(generateRequest);
         }
+        System.out.println(userId+"의 프로젝트 리스트 생성 완료. 리스트 전송중......");
         return ResponseEntity.ok(projectGenerateRequest);
     }
 
