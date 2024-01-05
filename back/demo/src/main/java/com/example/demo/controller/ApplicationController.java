@@ -52,7 +52,7 @@ public class ApplicationController {
         // format에 맞게 출력하기 위한 문자열 변환
         String dTime = formatter.format(systemTime);
         applicationProjectDTO.setApplyDate(dTime);
-
+        //ddd
         applicationProjectDAO.insertApplication(applicationProjectDTO);
         return new ResponseEntity<>("신청 완료", HttpStatus.CREATED);
     }
